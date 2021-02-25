@@ -4,7 +4,9 @@ from django.shortcuts import render, redirect
 from django.utils.http import is_safe_url
 
 
-def index(request):
+
+
+def index(request, *args, **kwargs):
     """The home page for Learning Log"""
     return render(request, 'pages/index.html')
 
