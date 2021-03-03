@@ -25,7 +25,9 @@ SECRET_KEY = 'r^88^3j(t4$i9gv!owt&@9l*zaw-pqbc9+#2re$9!r652!dzni'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
+LOGIN_URL = '/login'
+MAX_TITLE_LENGTH = 50
 
 
 # Application definition
@@ -37,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # My apps
+    # Third Party 
+    'rest_framework',
+    # Internal
     'learning_posts',
 ]
 
