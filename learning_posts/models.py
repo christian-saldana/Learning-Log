@@ -8,7 +8,7 @@ User = settings.AUTH_USER_MODEL
 class Topic(models.Model):
     """A topic the user is learning about."""
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    text = models.CharField(blank = True, null =True)
+    text = models.CharField(max_length=200)
 
     class Meta:
         ordering = ['-id']
