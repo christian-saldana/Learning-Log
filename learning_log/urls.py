@@ -21,11 +21,13 @@ from django.views.generic import TemplateView
 
 from learning_posts.views import (
     index,
+    topics,
 )
 
 urlpatterns = [
     path('', index),
     path('admin/', admin.site.urls),
+    path('topics/', topics),
 ]
 
 if settings.DEBUG:
