@@ -22,12 +22,14 @@ from django.views.generic import TemplateView
 from learning_posts.views import (
     index,
     topics,
+    topic,
 )
 
 urlpatterns = [
     path('', index),
     path('admin/', admin.site.urls),
     path('topics/', topics),
+    path('topics/<int:topic_id>/', topic, name='topic'),
 ]
 
 if settings.DEBUG:

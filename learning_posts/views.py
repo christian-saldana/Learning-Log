@@ -15,9 +15,16 @@ def index(request, *args, **kwargs):
     return render(request, 'pages/index.html')
 
 def topics(request):
-    """Show all topics"""
-    topics = Topic.Objects.order_by('date_added')
+    """Show all topics."""
+    topics = Topic.objects.order_by('date_added')
     context = {'topics': topics}
-    return render(request, 'learning')
+    return render(request, 'pages/topics.html', context)
+
+def topic(request, topic_id):
+    """Show all topics"""
+    topic = Topic.objects.get(id=topic_id)
+    entries = topic.entry_set.order_by('-date_added')
+    context = {'topic': topic, 'entries': entries}
+    return render(request, 'pages/topic.html', context)
 
 # Create your views here.
