@@ -23,6 +23,8 @@ from learning_posts.views import (
     index,
     topics,
     topic,
+    new_topic,
+    new_entry,
 )
 
 urlpatterns = [
@@ -30,6 +32,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('topics/', topics),
     path('topics/<int:topic_id>/', topic, name='topic'),
+    path('new_topic/', new_topic, name='new_topic'),
+    path('new_entry/<int:topic_id>/', new_entry, name='new_entry'),
 ]
 
 if settings.DEBUG:
