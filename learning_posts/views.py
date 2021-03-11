@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.utils.http import is_safe_url
 
 from .forms import TopicForm, EntryForm
-from .models import Topic
+from .models import Topic, Entry
 from .serializers import TopicSerializer
 
 ALLOWED_HOSTS = settings.ALLOWED_HOSTS
@@ -60,5 +60,22 @@ def new_entry(request, topic_id):
     # Display a blank or invalid form.
     context = {'topic': topic, 'form': form}
     return render(request, 'pages/new_entry.html', context)
+
+def edit_entry(request, entry_id):
+    """Edit an existing entry."""
+    entry = Entry.objects.get(id=entry_id)
+    topic = entry.topic
+ 
+    if request.method != 'POST':
+        # Initial request; pre-fill form with the current entry.
+        form = EntryForm(instance=entry)
+    else:
+        # POST data submitted; process data.
+        form = EntryForm(instance=entry, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('topic', topic_id=topic.id)
+    context = {'entry': entry, 'topic': topic, 'form': form}
+    return render(request, 'pages/edit_entry.html', context)
 
 # Create your views here.
