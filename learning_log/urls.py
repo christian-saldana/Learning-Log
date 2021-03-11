@@ -28,10 +28,10 @@ from learning_posts.views import (
 )
 
 urlpatterns = [
-    path('', index),
+    path('', index, name='index'),
     path('admin/', admin.site.urls),
     path('topics/', topics),
-    path('topics/<int:topic_id>/', topic, name='topic'),
+    path('topic/<int:topic_id>/', topic, name='topic'),
     path('new_topic/', new_topic, name='new_topic'),
     path('new_entry/<int:topic_id>/', new_entry, name='new_entry'),
 ]

@@ -37,7 +37,7 @@ def new_topic(request):
         form = TopicForm(data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect('pages:topics')
+            return redirect('topics')
     # Display a blank or invalid form.
     context = {'form': form}
     return render(request, 'pages/new_topic.html', context)
@@ -56,7 +56,7 @@ def new_entry(request, topic_id):
             new_entry = form.save(commit=False)
             new_entry.topic = topic
             new_entry.save()
-            return redirect('learning_logs:topic', topic_id=topic_id)
+            return redirect('topic', topic_id=topic_id)
     # Display a blank or invalid form.
     context = {'topic': topic, 'form': form}
     return render(request, 'pages/new_entry.html', context)
