@@ -10,7 +10,7 @@ class TopicSerializer(serializers.ModelSerializer):
         model = Topic
         fields = ['text']
 
-    def validate_text(self, value):
-        if len(value) > MAX_TITLE_LENGTH:
-            raise serializers.ValidationError("This title is too long")
-        return value
+        def validate_text(self, value):
+            if len(value) > MAX_TITLE_LENGTH:
+                raise serializers.ValidationError("This title is too long")
+            return value

@@ -44,8 +44,8 @@ def topic(request, topic_id):
  #   return render(request, 'pages/new_topic.html', context)
 
 @api_view(['POST', 'GET'])
+"""Adds new topic to learning log"""
 def new_topic(request, *args, **kwargs):
-    """Need to create frontend to call this api view"""
     serializer = TopicSerializer(data=request.POST)
     if serializer.is_valid(raise_exception=True):
         serializer.save(user=request.user)
