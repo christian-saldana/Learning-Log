@@ -5,7 +5,7 @@ from .models import Topic
 
 MAX_TITLE_LENGTH = settings.MAX_TITLE_LENGTH
 
-class TopicSerializer(serializers.ModelSerializer):
+class TopicCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Topic
         fields = ['text']
@@ -14,3 +14,12 @@ class TopicSerializer(serializers.ModelSerializer):
             if len(value) > MAX_TITLE_LENGTH:
                 raise serializers.ValidationError("This title is too long")
             return value
+
+class TopicSerializer(serializers.ModelSerializer):
+    text = serializers.SerializerMethodField(read_only=True)
+    class Meta:
+        model = Topic
+        fields = ['id', 'text']
+
+    def get_text(self, obj):
+        return obj.text

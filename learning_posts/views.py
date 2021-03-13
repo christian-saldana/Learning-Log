@@ -2,11 +2,17 @@ from django.conf import settings
 from django.http import HttpResponse, Http404, JsonResponse
 from django.shortcuts import render, redirect
 from django.utils.http import is_safe_url
-from rest_framework.decorators import api_view
+
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from .forms import TopicForm, EntryForm
 from .models import Topic, Entry
-from .serializers import TopicSerializer
+from .serializers import (
+    TopicCreateSerializer, 
+    TopicSerializer
+)
 
 ALLOWED_HOSTS = settings.ALLOWED_HOSTS
 
@@ -15,11 +21,26 @@ def index(request, *args, **kwargs):
     """The home page for Learning Log"""
     return render(request, 'pages/index.html')
 
-def topics(request):
-    """Show all topics."""
-    topics = Topic.objects.order_by('date_added')
-    context = {'topics': topics}
-    return render(request, 'pages/topics.html', context)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def topics(request,*args, **kwargs):
+    qs = Topic.objects.all()
+    serializer = TopicSerializer(qs, many=True)
+    return Response(serializer.data, status=200)
+
+@api_view(['DELETE', 'POST'])
+@permission_classes([IsAuthenticated])
+def delete_topic(request, topic_id, *args, **kwargs):
+    qs = Topic.objects.filter(id=topic_id)
+    if not qs.exists():
+        return Response({}, status=404)
+    qs = qs.filter(user=request.user)
+    if not qs.exists():
+        return Response({"message: You cannot delete this topic"}, status = 401)
+    obj = qs.first()
+    obj.delete()
+    return Response({"message": "Topic removed"}, status=200)
 
 def topic(request, topic_id):
     """Show all topics"""
@@ -28,28 +49,18 @@ def topic(request, topic_id):
     context = {'topic': topic, 'entries': entries}
     return render(request, 'pages/topic.html', context)
 
-#"""@api_view(['POST'])"""
-#def new_topic(request):
-#    if request.method != 'POST':
-#       # No data submitted; create a blank form.
- #       form = TopicForm()
-  #  else:
-#        # POST data submitted; process data.
-#        form = TopicForm(data=request.POST)
-#        if form.is_valid():
-#            form.save()
-#            return redirect('topics')
-#    # Display a blank or invalid form.
-#    context = {'form': form}
- #   return render(request, 'pages/new_topic.html', context)
 
 @api_view(['POST', 'GET'])
-"""Adds new topic to learning log"""
+@authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticated])
 def new_topic(request, *args, **kwargs):
-    serializer = TopicSerializer(data=request.POST)
+    """Adds new topic to learning log"""
+    serializer = TopicCreateSerializer(data=request.POST)
     if serializer.is_valid(raise_exception=True):
         serializer.save(user=request.user)
         return Response(serializer.data, status=201)
+        return redirect('topics')
+
     return Response({}, status=400)
 
 
@@ -89,4 +100,26 @@ def edit_entry(request, entry_id):
     context = {'entry': entry, 'topic': topic, 'form': form}
     return render(request, 'pages/edit_entry.html', context)
 
-# Create your views here.
+
+
+"""def topics(request):
+    Show all topics.
+    topics = Topic.objects.order_by('date_added')
+    context = {'topics': topics}
+    return render(request, 'pages/topics.html', context)"""
+
+
+"""@api_view(['POST'])
+def new_topic(request):
+    if request.method != 'POST':
+        No data submitted; create a blank form.
+        form = TopicForm()
+    else:
+        # POST data submitted; process data.
+        form = TopicForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('topics')
+     Display a blank or invalid form.
+    context = {'form': form}
+    return render(request, 'pages/new_topic.html', context)"""
