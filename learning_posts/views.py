@@ -29,7 +29,7 @@ def topics(request,*args, **kwargs):
     serializer = TopicSerializer(qs, many=True)
     return Response(serializer.data, status=200)
 
-@api_view(['DELETE', 'POST'])
+@api_view(['DELETE', 'POST', 'GET'])
 @permission_classes([IsAuthenticated])
 def delete_topic(request, topic_id, *args, **kwargs):
     qs = Topic.objects.filter(id=topic_id)

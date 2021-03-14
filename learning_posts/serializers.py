@@ -8,7 +8,7 @@ MAX_TITLE_LENGTH = settings.MAX_TITLE_LENGTH
 class TopicCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Topic
-        fields = ['text']
+        fields = ['id', 'text']
 
         def validate_text(self, value):
             if len(value) > MAX_TITLE_LENGTH:
