@@ -9,6 +9,7 @@ class TopicCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Topic
         fields = ['id', 'text']
+        lables = {'text': ''}
 
         def validate_text(self, value):
             if len(value) > MAX_TITLE_LENGTH:

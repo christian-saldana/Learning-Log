@@ -10,9 +10,14 @@ class Topic(models.Model):
     text = models.CharField(max_length=200, blank=True, null=True)
     date_added = models.DateTimeField(auto_now_add=True)
 
+    """def serialize(self):
+        return {
+            "id": self.id,
+            "text": self.text,
+        }   """
     def __str__(self):
+        """Return a string representation of the model."""
         return self.text
-
 
 
 class Entry(models.Model):

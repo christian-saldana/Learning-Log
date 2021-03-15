@@ -3,8 +3,9 @@ from django.http import HttpResponse, Http404, JsonResponse
 from django.shortcuts import render, redirect
 from django.utils.http import is_safe_url
 
+from rest_framework.parsers import JSONParser
 from rest_framework.authentication import SessionAuthentication
-from rest_framework.decorators import api_view, permission_classes, authentication_classes
+from rest_framework.decorators import api_view, permission_classes, authentication_classes, parser_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from .forms import TopicForm, EntryForm
@@ -42,6 +43,8 @@ def delete_topic(request, topic_id, *args, **kwargs):
     obj.delete()
     return Response({"message": "Topic removed"}, status=200)
 
+
+
 def topic(request, topic_id):
     """Show all topics"""
     topic = Topic.objects.get(id=topic_id)
@@ -53,6 +56,7 @@ def topic(request, topic_id):
 @api_view(['POST', 'GET'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
+#@parser_classes([JSONParser])
 def new_topic(request, *args, **kwargs):
     """Adds new topic to learning log"""
     serializer = TopicCreateSerializer(data=request.POST)
@@ -102,24 +106,36 @@ def edit_entry(request, entry_id):
 
 
 
-"""def topics(request):
-    Show all topics.
-    topics = Topic.objects.order_by('date_added')
+def django_topics(request):
+    """Show all topics."""
+    topics = Topic.objects.filter(user=request.user).order_by('date_added')
     context = {'topics': topics}
-    return render(request, 'pages/topics.html', context)"""
+    return render(request, 'pages/topics.html', context)
 
 
-"""@api_view(['POST'])
-def new_topic(request):
+@api_view(['GET', 'POST'])
+def django_new_topic(request):
     if request.method != 'POST':
-        No data submitted; create a blank form.
+        #No data submitted; create a blank form.
         form = TopicForm()
     else:
         # POST data submitted; process data.
-        form = TopicForm(data=request.POST)
+        form = TopicForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('topics')
-     Display a blank or invalid form.
+            new_topic = form.save(commit=False)
+            new_topic.user = request.user
+            new_topic.save()
+            return redirect('/topics')
+    #Display a blank or invalid form.
     context = {'form': form}
-    return render(request, 'pages/new_topic.html', context)"""
+    return render(request, 'pages/new_topic.html', context)
+
+
+@api_view(['GET'])
+def django_topic(request, topic_id, *args, **kwargs):
+    qs = Topic.objects.filter(id=topic_id)
+    if not qs.exists():
+        return Response({}, status=404)
+    obj = qs.first()
+    serializer = TopicSerializer(obj)
+    return Response(serializer.data)

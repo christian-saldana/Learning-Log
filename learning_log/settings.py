@@ -25,7 +25,7 @@ SECRET_KEY = 'r^88^3j(t4$i9gv!owt&@9l*zaw-pqbc9+#2re$9!r652!dzni'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['*']
 LOGIN_URL = '/login'
 MAX_TITLE_LENGTH = 50
 
@@ -140,7 +140,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
     ],
-    
+
     'DEFAULT_RENDERER_CLASSES': DEFAULT_RENDERER_CLASSES
 }
 
