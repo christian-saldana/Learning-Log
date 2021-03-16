@@ -7,7 +7,7 @@ User = settings.AUTH_USER_MODEL
 class Topic(models.Model):
     """A topic the user is learning about."""
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    text = models.CharField(max_length=200, blank=True, null=True)
+    text = models.CharField(max_length=200, blank=True, default='')
     date_added = models.DateTimeField(auto_now_add=True)
 
     """def serialize(self):
@@ -15,9 +15,9 @@ class Topic(models.Model):
             "id": self.id,
             "text": self.text,
         }   """
-    def __str__(self):
-        """Return a string representation of the model."""
-        return self.text
+    """def __str__(self):
+        Return a string representation of the model.
+        return self.text"""
 
 
 class Entry(models.Model):
