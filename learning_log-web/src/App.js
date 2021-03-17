@@ -12,7 +12,19 @@ function loadPosts(callback) {
   xhr.onload = function() {
     callback(xhr.response, xhr.status)
   }
+  xhr.onerror = function (e) {
+    console.log(e)
+    callback({"message": "The request was an error"}, 400)
+  }
   xhr.send()
+}
+
+function Topic(props) {
+  const {topic} = props
+  const className = props.className ? props.className : 'col-10 mx-auto col-md-6'
+  return <div className={className}>
+    <p>{topic.id} - {topic.text}</p>
+  </div>
 }
 
 function App() {
@@ -20,8 +32,11 @@ function App() {
 
   useEffect(() => {
     const myCallback = (response, status) => {
+      console.log(response, status)
       if (status === 200){
         setLearning_posts(response)
+      } else {
+        alert("There was an eror")
       }
     }
     loadPosts(myCallback)
@@ -33,11 +48,11 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <p>
-          {learning_posts.map((topic, index)=>{
-            return <li>{topic.text}</li>
+        <div>
+          {learning_posts.map((item, index)=>{
+            return <Topic topic={item} className='my-5 py-5 border bg-white text-dark' key={`${index}-{item.id}`}/>
           })}
-        </p>
+        </div>
         <a
           className="App-link"
           href="https://reactjs.org"
