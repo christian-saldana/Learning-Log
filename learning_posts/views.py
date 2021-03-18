@@ -2,11 +2,9 @@ from django.conf import settings
 from django.http import HttpResponse, Http404, JsonResponse
 from django.shortcuts import render, redirect
 from django.utils.http import is_safe_url
-import json
 from rest_framework import generics
-from rest_framework.parsers import JSONParser
 from rest_framework.authentication import SessionAuthentication
-from rest_framework.decorators import api_view, permission_classes, authentication_classes, parser_classes
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from .forms import TopicForm, EntryForm
@@ -55,14 +53,9 @@ def delete_topic(request, topic_id, *args, **kwargs):
 
 
 
-class generic_new_topic(generics.ListCreateAPIView):
-    queryset = Topic.objects.all()
-    serializer_class = TopicCreateSerializer
-
 @api_view(['POST', 'GET'])
 @authentication_classes([SessionAuthentication])
-#@permission_classes([IsAuthenticated])
-#@parser_classes([JSONParser])
+@permission_classes([IsAuthenticated])
 def new_topic(request, *args, **kwargs):
     """Adds new topic to learning log"""
     serializer = TopicCreateSerializer(data=request.data)
