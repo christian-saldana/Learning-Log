@@ -1,6 +1,7 @@
-import {Topic, TopicsList} from './components'
+import {Topic, TopicsList, TopicsComponent} from './components'
 
 export {
     Topic,
     TopicsList,
+    TopicsComponent,
 }

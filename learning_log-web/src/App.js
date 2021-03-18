@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import {TopicsList} from './learning_posts'
+import {TopicsComponent} from './learning_posts'
 
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <div>
-          <TopicsList />
+          <TopicsComponent />
         </div>
         <a
           className="App-link"
