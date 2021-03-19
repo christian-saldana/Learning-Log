@@ -54,7 +54,7 @@ def delete_topic(request, topic_id, *args, **kwargs):
 
 
 @api_view(['POST', 'GET'])
-@authentication_classes([SessionAuthentication])
+#@authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
 def new_topic(request, *args, **kwargs):
     """Adds new topic to learning log"""

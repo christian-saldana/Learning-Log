@@ -1,5 +1,6 @@
-import {loadTopics} from './components'
+import {loadTopics, createTopic} from './components'
 
 export {
     loadTopics,
+    createTopic,
 }

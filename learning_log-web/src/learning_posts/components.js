@@ -1,19 +1,24 @@
 import React, {useEffect, useState} from 'react'
 
-import {loadTopics} from '../lookup'
+import {createTopic, loadTopics} from '../lookup'
 
 export function TopicsComponent(props) {
     const textAreaRef = React.createRef()
     const [newTopics, setNewTopics] = useState([])
+    const handleBackendUpdate = (response, status) => {
+      let tempNewTopics = [...newTopics]
+      if (status === 201) {
+        tempNewTopics.unshift(response)
+        setNewTopics(tempNewTopics)
+      } else {
+        console.log(response)
+        alert("An error occurred please try again.")
+      }
+    }
     const handleSubmit = (event) => {
         event.preventDefault()
         const newVal = textAreaRef.current.value
-        let tempNewTopics = [...newTopics]
-        tempNewTopics.unshift({
-            text: newVal,
-            id:123
-        })
-        setNewTopics(tempNewTopics)
+        createTopic(newVal, handleBackendUpdate)
         textAreaRef.current.value=''
     }
     return <div className={props.className}>
