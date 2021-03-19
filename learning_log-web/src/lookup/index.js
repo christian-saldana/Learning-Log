@@ -1,5 +1,5 @@
-import {loadPosts} from './components'
+import {loadTopics} from './components'
 
 export {
-    loadPosts,
+    loadTopics,
 }

@@ -32,7 +32,7 @@ from learning_posts.views import (
 urlpatterns = [
     path('', index),
     path('admin/', admin.site.urls),
-    path('react/', TemplateView.as_view(template_name='react.html')),
+    path('react/', TemplateView.as_view(template_name='react_via_dj.html')),
     path('topics/', topics),
     path('topics/<int:topic_id>/', topic, name='topic'),
     path('new_topic/', new_topic),

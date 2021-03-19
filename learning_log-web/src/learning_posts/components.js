@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 
-import {loadPosts} from '../lookup'
+import {loadTopics} from '../lookup'
 
 export function TopicsComponent(props) {
     const textAreaRef = React.createRef()
@@ -32,6 +32,7 @@ export function TopicsComponent(props) {
 export function TopicsList(props) {
     const [topicsInit, setTopicsInit] = useState([])
     const [topics, setTopics] = useState([])
+    const [topicsDidSet, setTopicsDidSet] = useState(false)
     useEffect(() =>{
         const final = [...props.newTopics].concat(topicsInit)
         if (final.length !== topics.length) {
@@ -40,15 +41,18 @@ export function TopicsList(props) {
     }, [props.newTopics, topics, topicsInit])
 
     useEffect(() => {
-      const myCallback = (response, status) => {
-        if (status === 200){
-          setTopicsInit(response)
-        } else {
-          alert("There was an eror")
+      if (topicsDidSet === false) {
+        const myCallback = (response, status) => {
+          if (status === 200){
+            setTopicsInit(response)
+            setTopicsDidSet(true)
+          } else {
+            alert("There was an eror")
+          }
         }
+        loadTopics(myCallback)
       }
-      loadPosts(myCallback)
-    }, [])
+    }, [topicsInit, topicsDidSet, setTopicsDidSet])
     return topics.map((item, index)=>{
       return <Topic topic={item} className='my-5 py-5 border bg-white text-dark' key={`${index}-{item.id}`}/>
     })
