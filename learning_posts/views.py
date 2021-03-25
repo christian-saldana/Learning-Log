@@ -26,6 +26,9 @@ def index(request, *args, **kwargs):
 #@permission_classes([IsAuthenticated])
 def topics(request,*args, **kwargs):
     qs = Topic.objects.all()
+    username = request.GET.get('username')
+    if username != None:
+        qs = qs.filter(user__username__iexact=username)
     serializer = TopicSerializer(qs, many=True)
     return Response(serializer.data, status=200)
 

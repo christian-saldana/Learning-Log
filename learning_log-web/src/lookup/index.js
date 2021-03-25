@@ -1,6 +1,5 @@
-import {loadTopics, createTopic} from './components'
+import {backendLookup} from './components'
 
 export {
-    loadTopics,
-    createTopic,
+    backendLookup,
 }
