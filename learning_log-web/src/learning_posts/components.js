@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react'
 import {createTopic, loadTopics} from '../lookup'
 
 export function TopicsComponent(props) {
+    console.log(props)
     const textAreaRef = React.createRef()
     const [newTopics, setNewTopics] = useState([])
     const handleBackendUpdate = (response, status) => {

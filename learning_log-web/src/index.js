@@ -9,9 +9,10 @@ const appEl = document.getElementById('root')
 if (appEl) {
   ReactDOM.render(<App />, appEl);
 }
+const e = React.createElement
 const topicEl = document.getElementById("Learning-Log")
 if (topicEl) {
-  ReactDOM.render(<TopicsComponent />, topicEl);
+  ReactDOM.render(e(TopicsComponent, topicEl.dataset), topicEl);
 }
 
 // If you want to start measuring performance in your app, pass a function
