@@ -31,6 +31,7 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
 
+    <div id="topic-container"></div>
     <div id="Learning-Log" data-username="admin" data-can-create="false"> </div>
     <!--
       This HTML file is a template.
@@ -43,8 +44,17 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     <script>
-      var topicID = 12
-      var topicEl
+      var path = window.location.pathname
+      var idRegex = /(?<topicid>\d+)/
+      var match = path.match(idRegex)
+      var topicId = match.groups.topicid
+      if (topicId) {
+        var Learning_LogEL = document.getElementById("Learning-Log")
+        Learning_LogEL.className = 'd-none'
+        var topicEl = "<div class='learning_posts-detail' data-topic-id=" + topicId + " data-class-name='col-6 mx-auto'></div>"
+        var mainContainer = document.getElementById("topic-container")
+        mainContainer.innerHTML = topicEl
+      }
     </script>
   </body>
 </html>
