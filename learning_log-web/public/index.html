@@ -47,8 +47,8 @@
       var path = window.location.pathname
       var idRegex = /(?<topicid>\d+)/
       var match = path.match(idRegex)
-      var topicId = match.groups.topicid
-      if (topicId) {
+      if (match) {
+        var topicId = match.groups.topicid
         var Learning_LogEL = document.getElementById("Learning-Log")
         Learning_LogEL.className = 'd-none'
         var topicEl = "<div class='learning_posts-detail' data-topic-id=" + topicId + " data-class-name='col-6 mx-auto'></div>"
