@@ -19,6 +19,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 
+from accounts.views import (
+    login_view,
+    logout_view,
+    register_view
+)
+
 from learning_posts.views import (
     topics_list_view,
     topics_detail_view,
@@ -28,6 +34,9 @@ from learning_posts.views import (
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', topics_list_view),
+    path('login/', login_view),
+    path('logout/', logout_view),
+    path('register/', register_view),
     path('<int:topic_id>', topics_detail_view),
     path('profile/<str:username>', topics_profile_view),
     # path('new_entry/<int:topic_id>/', new_entry, name='new_entry'),
