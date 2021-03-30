@@ -20,25 +20,19 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 
 from learning_posts.views import (
-    index,
-    topics,
-    topic,
-    new_topic,
-    new_entry,
-    edit_entry,
-    delete_topic,
+    topics_list_view,
+    topics_detail_view,
+    topics_profile_view,
 )
 
 urlpatterns = [
-    path('', index),
     path('admin/', admin.site.urls),
-    path('react/', TemplateView.as_view(template_name='react_via_dj.html')),
-    path('topics/', topics),
-    path('topics/<int:topic_id>/', topic, name='topic'),
-    path('new_topic/', new_topic),
-    path('new_entry/<int:topic_id>/', new_entry, name='new_entry'),
-    path('edit_entry/<int:entry_id>/', edit_entry, name='edit_entry'),
-    path('api/topics/', include('learning_posts.urls'))
+    path('', topics_list_view),
+    path('<int:topic_id>', topics_detail_view),
+    path('profile/<str:username>', topics_profile_view),
+    # path('new_entry/<int:topic_id>/', new_entry, name='new_entry'),
+    # path('edit_entry/<int:entry_id>/', edit_entry, name='edit_entry'),
+    path('api/topics/', include('learning_posts.api.urls'))
 
 ]
 
