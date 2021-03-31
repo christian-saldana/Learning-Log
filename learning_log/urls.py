@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, re_path, include
 from django.views.generic import TemplateView
 
 from accounts.views import (
@@ -28,7 +28,6 @@ from accounts.views import (
 from learning_posts.views import (
     topics_list_view,
     topics_detail_view,
-    topics_profile_view,
 )
 
 urlpatterns = [
@@ -38,7 +37,7 @@ urlpatterns = [
     path('logout/', logout_view),
     path('register/', register_view),
     path('<int:topic_id>', topics_detail_view),
-    path('profile/<str:username>', topics_profile_view),
+    re_path(r'profiles?/', include('profiles.urls')),
     # path('new_entry/<int:topic_id>/', new_entry, name='new_entry'),
     # path('edit_entry/<int:entry_id>/', edit_entry, name='edit_entry'),
     path('api/topics/', include('learning_posts.api.urls'))

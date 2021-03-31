@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # Internal
     'accounts',
     'learning_posts',
+    'profiles',
 ]
 
 MIDDLEWARE = [

@@ -16,7 +16,4 @@ def topics_list_view(request, *args, **kwargs):
 def topics_detail_view(request, topic_id, *args, **kwargs):
     return render(request, 'topics/detail.html', context={"topic_id":topic_id})
 
-def topics_profile_view(request, username, *args, **kwargs):
-    return render(request, 'topics/profile.html', context={"profile_username":username})
-
 
