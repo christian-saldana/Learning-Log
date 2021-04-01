@@ -17,17 +17,22 @@ from ..serializers import (
 
 ALLOWED_HOSTS = settings.ALLOWED_HOSTS
 
+def get_paginated_queryset_response(qs, request):
+    paginator = PageNumberPagination()
+    paginator.page_size = 20
+    paginated_qs = paginator.paginate_queryset(qs, request)
+    serializer = TopicSerializer(paginated_qs, many=True)
+    return paginator.get_paginated_response(serializer.data)
+
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def topics(request,*args, **kwargs):
-    """Need to update to only display posts from user"""
     qs = Topic.objects.filter(user=request.user)
-    username = request.GET.get('username')
-    if username != None:
-        qs = qs.filter(user__username__iexact=username)
-    serializer = TopicSerializer(qs, many=True)
-    return Response(serializer.data, status=200)
+    #username = request.GET.get('username')
+    #if username != None:
+    #    qs = qs.filter(user__username__iexact=username)
+    return get_paginated_queryset_response(qs, request)
 
 
 
