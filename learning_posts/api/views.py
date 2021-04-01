@@ -5,6 +5,7 @@ from django.utils.http import is_safe_url
 from rest_framework import generics
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from ..forms import TopicForm, EntryForm
@@ -18,14 +19,17 @@ ALLOWED_HOSTS = settings.ALLOWED_HOSTS
 
 
 @api_view(['GET'])
-#@permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def topics(request,*args, **kwargs):
-    qs = Topic.objects.all()
+    """Need to update to only display posts from user"""
+    qs = Topic.objects.filter(user=request.user)
     username = request.GET.get('username')
     if username != None:
         qs = qs.filter(user__username__iexact=username)
     serializer = TopicSerializer(qs, many=True)
     return Response(serializer.data, status=200)
+
+
 
 @api_view(['GET'])
 def topic(request, topic_id, *args, **kwargs):
