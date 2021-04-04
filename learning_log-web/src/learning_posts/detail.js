@@ -9,6 +9,7 @@ export function Topic(props) {
     const match = path.match(/(?<topicid>\d+)/ )
     const urlTopicId = match ? match.groups.topicid : -1
     const isDetail = `${topic.id}` === `${urlTopicId}`
+
     const handleLink = (event) => {
       event.preventDefault()
       window.location.href = `/${topic.id}`

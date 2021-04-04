@@ -8,7 +8,7 @@ import {TopicCreate} from './topicCreate'
 
 export function TopicsComponent(props) {
     const [newTopics, setNewTopics] = useState([])
-    const canCreate = props.canCreate === "false" ? false : true
+    const canTopic = props.canTopic === "false" ? false : true
     const handleNewTopic = (newTopic) => {
       let tempNewTopics = [...newTopics]
       tempNewTopics.unshift(newTopic)
@@ -16,7 +16,7 @@ export function TopicsComponent(props) {
     }
 
     return <div className={props.className}>
-            {canCreate === true && <TopicCreate didTopic={handleNewTopic} className='col-12 mb-3' />}
+            {canTopic === true && <TopicCreate didTopic={handleNewTopic} className='col-12 mb-3' />}
           <TopicsList newTopics={newTopics} {...props}/>
     </div>
 }
@@ -30,7 +30,7 @@ export function TopicDetailComponent(props){
     if (status === 200) {
       setTopic(response)
     } else {
-      alert("There was an error finding your tweet.")
+      alert("There was an error finding your topic.")
     }
   }
   useEffect(()=>{
