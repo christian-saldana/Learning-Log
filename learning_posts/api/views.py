@@ -5,6 +5,7 @@ from django.utils.http import is_safe_url
 from rest_framework import generics
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
+from django.contrib.auth.decorators import login_required
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -25,11 +26,12 @@ def get_paginated_queryset_response(qs, request):
     return paginator.get_paginated_response(serializer.data)
 
 
+
 @api_view(['GET'])
 #@permission_classes([IsAuthenticated])
 def topics(request,*args, **kwargs):
-    qs = Topic.objects.all()
-    #qs = Topic.objects.filter(user=request.user)
+    #qs = Topic.objects.all()
+    qs = Topic.objects.filter(user=request.user.id)
 
     # username = request.GET.get('username')
     # if username != None:
