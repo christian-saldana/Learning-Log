@@ -21,7 +21,7 @@ export function TopicsList(props) {
         const handleTopicsListLookup = (response, status) => {
           if (status === 200){
             setNextUrl(response.next)
-            setTopicsInit(response)
+            setTopicsInit(response.results)
             setTopicsDidSet(true)
           } else {
             alert("There was an error")

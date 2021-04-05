@@ -30,23 +30,8 @@ def get_paginated_queryset_response(qs, request):
 @api_view(['GET'])
 #@permission_classes([IsAuthenticated])
 def topics(request,*args, **kwargs):
-    #qs = Topic.objects.all()
-    qs = Topic.objects.filter(user=request.user.id)
-
-    # username = request.GET.get('username')
-    # if username != None:
-    #     qs = qs.filter(user__username__iexact=username)
+    qs = Topic.objects.filter(user=request.user)
     return get_paginated_queryset_response(qs, request)
-
-@api_view(['GET'])
-#@permission_classes([IsAuthenticated])
-def temp_topics(request,*args, **kwargs):
-    qs = Topic.objects.all()
-    username = request.GET.get('username')
-    if username != None:
-        qs = qs.filter(user__username__iexact=username)
-    serializer = TopicSerializer(qs, many=True)
-    return Response(serializer.data, status=200)
 
 
 
