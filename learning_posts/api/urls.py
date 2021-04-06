@@ -5,8 +5,8 @@ from .views import (
     topics,
     topic,
     new_topic,
-    #new_entry,
-    #edit_entry,
+    new_entry,
+    edit_entry,
     delete_topic,
 )
 
@@ -15,6 +15,6 @@ urlpatterns = [
     path('new_topic/', new_topic),
     path('<int:topic_id>/', topic),
     path('<int:topic_id>/delete/', delete_topic),
-    #path('new_entry/<int:topic_id>/', new_entry),
-    #path('edit_entry/<int:entry_id>/', edit_entry),
+    path('new_entry/<int:topic_id>/', new_entry),
+    path('edit_entry/<int:entry_id>/', edit_entry),
 ]

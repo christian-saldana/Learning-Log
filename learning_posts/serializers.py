@@ -43,8 +43,13 @@ class EntrySerializer(serializers.ModelSerializer):
             'entries',
             ]
 
-        # def get_text(self, obj):
-        #     return obj.text
-    
-        # def get_topic(self, obj):
-        #     return obj.topic
+class EntryCreateSerializer(serializers.ModelSerializer):
+    entries = serializers.StringRelatedField(many=True)
+    post_topic = serializers.SerializerMethodField(read_only=True)
+    class Meta:
+        model = Topic
+        fields = [
+            'id', 
+            'post_topic', 
+            'entries',
+        ]

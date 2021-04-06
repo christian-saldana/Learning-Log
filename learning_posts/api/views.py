@@ -14,6 +14,7 @@ from ..serializers import (
     TopicCreateSerializer, 
     TopicSerializer,
     EntrySerializer,
+    EntryCreateSerializer,
 )
 
 ALLOWED_HOSTS = settings.ALLOWED_HOSTS
@@ -76,7 +77,19 @@ def new_topic(request, *args, **kwargs):
     return Response(serializer.errors, status=400)
 
 
-def new_entry(request, topic_id):
+
+@api_view(['POST', 'GET'])
+#@authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticated])
+def new_entry(request, *args, **kwargs):
+    """Adds new entry to learning log"""
+    serializer = EntryCreateSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save(user=request.user)
+        return Response(serializer.data, status=201)
+    return Response(serializer.errors, status=400)
+
+def django_new_entry(request, topic_id):
     """Add a new entry for a particular topic."""
     topic = Topic.objects.get(id=topic_id)
  
