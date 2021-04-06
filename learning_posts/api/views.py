@@ -9,11 +9,11 @@ from django.contrib.auth.decorators import login_required
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from ..forms import TopicForm, EntryForm
 from ..models import Topic, Entry
 from ..serializers import (
     TopicCreateSerializer, 
-    TopicSerializer
+    TopicSerializer,
+    EntrySerializer,
 )
 
 ALLOWED_HOSTS = settings.ALLOWED_HOSTS
@@ -41,8 +41,14 @@ def topic(request, topic_id, *args, **kwargs):
     if not qs.exists():
         return Response({}, status=404)
     obj = qs.first()
-    serializer = TopicSerializer(obj)
+    print(obj)
+    serializer = EntrySerializer(obj)
     return Response(serializer.data)
+
+"""def topic(self, request, *args, **kwargs):
+    serializer = ResourceListSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+    serializer.save(creator=request.user)"""
 
 @api_view(['DELETE', 'POST', 'GET'])
 @permission_classes([IsAuthenticated])

@@ -7,12 +7,12 @@ User = settings.AUTH_USER_MODEL
 class Topic(models.Model):
     """A topic the user is learning about."""
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    text = models.CharField(max_length=200)
+    post_topic = models.CharField(max_length=200)
     date_added = models.DateTimeField(auto_now_add=True)
 
 
-    def __str__(self):
-        return self.text
+    # def __str__(self):
+    #     return self.text
 
     class Meta:
         ordering = ['-id']
@@ -20,13 +20,21 @@ class Topic(models.Model):
 
 class Entry(models.Model):
     """Something specific learned about a topic."""
-    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    text = models.TextField()
+    topic = models.ForeignKey(Topic, related_name='entries', on_delete=models.CASCADE)
+    post_entry = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
  
+    # class Meta:
+    #     verbose_name_plural = 'entries'
+
     class Meta:
-        verbose_name_plural = 'entries'
+        unique_together = ['topic', 'date_added']
+        ordering = ['date_added']
+    
     def __str__(self):
-        """Return a string representation of the model."""
-        return f"{self.text[:50]}..."
+        return '%s' % (self.post_entry)
+
+    #def __str__(self):
+    #    """Return a string representation of the model."""
+    #    return f"{self.text[:50]}..."
 

@@ -1,7 +1,7 @@
 from django.conf import settings
 from rest_framework import serializers
 from profiles.serializers import PublicProfileSerializer
-from .models import Topic
+from .models import Topic, Entry
 
 
 MAX_TITLE_LENGTH = settings.MAX_TITLE_LENGTH
@@ -10,7 +10,7 @@ class TopicCreateSerializer(serializers.ModelSerializer):
     user = PublicProfileSerializer(source='user.profile', read_only=True)#serializers.SerializerMethodField(read_only=True)
     class Meta:
         model = Topic
-        fields = ['user', 'id', 'text']
+        fields = ['user', 'id', 'post_topic']
 
         def validate_text(self, value):
             if len(value) > MAX_TITLE_LENGTH:
@@ -22,13 +22,29 @@ class TopicCreateSerializer(serializers.ModelSerializer):
 
 class TopicSerializer(serializers.ModelSerializer):
     user = PublicProfileSerializer(source= 'user.profile', read_only=True)
-    text = serializers.SerializerMethodField(read_only=True)
+    post_topic = serializers.SerializerMethodField(read_only=True)
     class Meta:
         model = Topic
         fields = [
             'user', 
             'id', 
-            'text']
+            'post_topic']
 
     def get_text(self, obj):
-        return obj.text
+        return obj.post_topic
+
+class EntrySerializer(serializers.ModelSerializer):
+    entries = serializers.StringRelatedField(many=True)
+    class Meta:
+        model = Topic
+        fields = [ 
+            'id', 
+            'post_topic',
+            'entries',
+            ]
+
+        # def get_text(self, obj):
+        #     return obj.text
+    
+        # def get_topic(self, obj):
+        #     return obj.topic
