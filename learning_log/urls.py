@@ -30,6 +30,10 @@ from learning_posts.views import (
     topics_detail_view,
 )
 
+# from learning_posts.api.views import (
+#     edit_entry
+# )
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', topics_list_view),

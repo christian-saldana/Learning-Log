@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from ..forms import EntryForm
 from ..models import Topic, Entry
 from ..serializers import (
     TopicCreateSerializer, 
