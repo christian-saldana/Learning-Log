@@ -12,7 +12,7 @@ class TopicCreateSerializer(serializers.ModelSerializer):
         model = Topic
         fields = ['user', 'id', 'post_topic']
 
-        def validate_text(self, value):
+        def validate_post_topic(self, value):
             if len(value) > MAX_TITLE_LENGTH:
                 raise serializers.ValidationError("This title is too long")
             return value
@@ -30,7 +30,7 @@ class TopicSerializer(serializers.ModelSerializer):
             'id', 
             'post_topic']
 
-    def get_text(self, obj):
+    def get_post_topic(self, obj):
         return obj.post_topic
 
 class EntrySerializer(serializers.ModelSerializer):

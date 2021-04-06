@@ -41,7 +41,6 @@ def topic(request, topic_id, *args, **kwargs):
     if not qs.exists():
         return Response({}, status=404)
     obj = qs.first()
-    print(obj)
     serializer = EntrySerializer(obj)
     return Response(serializer.data)
 

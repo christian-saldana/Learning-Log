@@ -1,7 +1,5 @@
 import React from 'react'
 
-// import {apiTopicCreate, apiTopicsList} from './lookup'
-
 export function Topic(props) {
     const {topic} = props
     const className = props.className ? props.className : 'col-10 mx-auto col-md-6'
@@ -16,7 +14,7 @@ export function Topic(props) {
     }
     return <div className={className}>
       <div>
-        <p>{topic.id} - {topic.text}</p>
+        <p>{topic.id} - {topic.post_topic}</p>
       </div>
       {isDetail === true ? null : <button className='btn btn-outline-primary' onClick={handleLink}>View</button>}
     </div>

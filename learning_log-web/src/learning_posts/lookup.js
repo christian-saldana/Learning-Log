@@ -1,7 +1,7 @@
 import {backendLookup} from '../lookup'
 
 export function apiTopicCreate(newTopic, callback) {
-    backendLookup("POST", "/topics/new_topic/", callback, {text: newTopic})
+    backendLookup("POST", "/topics/new_topic/", callback, {post_topic: newTopic})
   
   }
 
