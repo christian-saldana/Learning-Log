@@ -30,9 +30,9 @@ from learning_posts.views import (
     topics_detail_view,
 )
 
-# from learning_posts.api.views import (
-#     edit_entry
-# )
+from learning_posts.api.views import (
+    edit_entry
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -43,7 +43,7 @@ urlpatterns = [
     path('<int:topic_id>', topics_detail_view),
     re_path(r'profiles?/', include('profiles.urls')),
     #path('new_entry/<int:topic_id>/', new_entry, name='new_entry'),
-    #path('edit_entry/<int:entry_id>/', edit_entry, name='edit_entry'),
+    path('edit_entry/<int:entry_id>/', edit_entry, name='edit_entry'),
     path('api/topics/', include('learning_posts.api.urls'))
 
 ]

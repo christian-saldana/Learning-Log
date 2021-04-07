@@ -45,11 +45,7 @@ def topic(request, topic_id, *args, **kwargs):
     obj = qs.first()
     serializer = EntrySerializer(obj)
     return Response(serializer.data)
-
-"""def topic(self, request, *args, **kwargs):
-    serializer = ResourceListSerializer(data=request.data)
-    serializer.is_valid(raise_exception=True)
-    serializer.save(creator=request.user)"""
+    
 
 @api_view(['DELETE', 'POST', 'GET'])
 @permission_classes([IsAuthenticated])
