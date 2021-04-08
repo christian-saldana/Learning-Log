@@ -7,7 +7,7 @@ User = settings.AUTH_USER_MODEL
 class Topic(models.Model):
     """A topic the user is learning about."""
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    post_topic = models.CharField(max_length=200)
+    post_topic = models.CharField(max_length=200, blank=True, null=True)
     date_added = models.DateTimeField(auto_now_add=True)
 
 

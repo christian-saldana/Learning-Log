@@ -32,7 +32,11 @@ def get_paginated_queryset_response(qs, request):
 @api_view(['GET'])
 #@permission_classes([IsAuthenticated])
 def topics(request,*args, **kwargs):
-    qs = Topic.objects.filter(user=request.user)
+    #qs = Topic.objects.filter(user=request.user.id)
+    qs = Topic.objects.all()
+    username = request.GET.get('username')
+    if username != None:
+        qs = qs.filter(user__username__iexact=username)
     return get_paginated_queryset_response(qs, request)
 
 
@@ -45,7 +49,7 @@ def topic(request, topic_id, *args, **kwargs):
     obj = qs.first()
     serializer = EntrySerializer(obj)
     return Response(serializer.data)
-    
+
 
 @api_view(['DELETE', 'POST', 'GET'])
 @permission_classes([IsAuthenticated])
@@ -64,11 +68,12 @@ def delete_topic(request, topic_id, *args, **kwargs):
 
 @api_view(['POST', 'GET'])
 #@authentication_classes([SessionAuthentication])
-@permission_classes([IsAuthenticated])
+#@permission_classes([IsAuthenticated])
 def new_topic(request, *args, **kwargs):
     """Adds new topic to learning log"""
     serializer = TopicCreateSerializer(data=request.data)
     if serializer.is_valid():
+        print(request.user)
         serializer.save(user=request.user)
         return Response(serializer.data, status=201)
     return Response(serializer.errors, status=400)
@@ -104,23 +109,6 @@ def django_new_entry(request, topic_id):
     # Display a blank or invalid form.
     context = {'topic': topic, 'form': form}
     return render(request, 'pages/new_entry.html', context)
-
-def edit_entry(request, entry_id):
-    """Edit an existing entry."""
-    entry = Entry.objects.get(id=entry_id)
-    topic = entry.topic
- 
-    if request.method != 'POST':
-        # Initial request; pre-fill form with the current entry.
-        form = EntryForm(instance=entry)
-    else:
-        # POST data submitted; process data.
-        form = EntryForm(instance=entry, data=request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('topic', topic_id=topic.id)
-    context = {'entry': entry, 'topic': topic, 'form': form}
-    return render(request, 'pages/edit_entry.html', context)
 
 
 

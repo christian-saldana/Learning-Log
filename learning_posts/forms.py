@@ -13,7 +13,7 @@ class TopicForm(forms.ModelForm):
 
     def clean_text(self):
         text = self.cleaned_data.get("post_topic")
-        if len(text) > MAX_TITLE_LENGTH:
+        if len(post_topic) > MAX_TITLE_LENGTH:
             raise forms.ValidationError("This title is too long")
         return text
 

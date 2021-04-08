@@ -22,7 +22,7 @@ export function TopicCreate(props){
       }
       return <div className={props.className}>
           <form onSubmit={handleSubmit}>
-            <textarea ref={textAreaRef} required={true} className='form-control'>
+            <textarea ref={textAreaRef} required={true} className='form-control' name='topic'>
   
             </textarea>
             <button type='submit' className='btn btn-primary my-3'>Topic</button>
