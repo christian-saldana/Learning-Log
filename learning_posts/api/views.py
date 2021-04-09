@@ -73,10 +73,10 @@ def new_topic(request, *args, **kwargs):
     """Adds new topic to learning log"""
     serializer = TopicCreateSerializer(data=request.data)
     if serializer.is_valid():
-        print(request.user)
         serializer.save(user=request.user)
         return Response(serializer.data, status=201)
-    return Response(serializer.errors, status=400)
+    print(serializer.data)
+    return Response({}, status=400)
 
 
 
