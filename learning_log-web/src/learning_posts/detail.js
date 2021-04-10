@@ -3,7 +3,6 @@ import './styles.css'
 
 export function Topic(props) {
     const {topic} = props
-    const className = props.className ? props.className : 'col-50'
     const path = window.location.pathname
     const match = path.match(/(?<topicid>\d+)/ )
     const urlTopicId = match ? match.groups.topicid : -1
@@ -13,10 +12,17 @@ export function Topic(props) {
       event.preventDefault()
       window.location.href = `/${topic.id}`
     }
-    return <div className={className}>
+    return <div>
       <div>
-        <p>{topic.id} - {topic.post_topic}:</p>
-        <p className='entry'>{topic.entries}</p>
+        <p>Topic: {topic.id} - {topic.post_topic}</p>
+        <p> Entries: </p>
+        <ul>
+          <li className='m-5'>
+            <p>{topic.date_added} <br /> <br /> 
+              {topic.entries}</p>
+          </li>
+        </ul>
+
       </div>
       {isDetail === true ? null : <button className='btn btn-outline-primary' onClick={handleLink}>View</button>}
     </div>
