@@ -32,5 +32,5 @@ class Entry(models.Model):
 
     def __str__(self):
        """Return a string representation of the model."""
-       return f"{self.post_entry[:50]}..."
+       return self.post_entry
 

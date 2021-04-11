@@ -41,9 +41,7 @@ export function TopicDetailComponent(props) {
   }, [topicId, didLookup, setDidLookup]);
     return <div>
               {topic === null ? null : <Topic topic={topic} className={props.className}/> }
-              <p className='m-5'>
               {topic === null ? null : <Entry topic={topic}/>}
-              </p>
             </div>
 
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import './styles.css'
 
 export function Topic(props) {
     const {topic} = props
@@ -27,7 +26,14 @@ export function Topic(props) {
     const className = props.className ? props.className : 'col-10 mx-auto col-md-6'
     return <div className={className}>
       <div>
-        <p>{topic.entries}</p>       
+        <ul className='m-5'>
+          <li>
+            <p> {topic.date_added} <br /> <br />
+                {topic.entries} {topic.entries.id}
+            </p>
+          </li>
+        </ul>
+               
 
       </div>
     </div>
