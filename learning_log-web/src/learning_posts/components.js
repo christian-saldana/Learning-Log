@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 
 import {TopicsList} from './topics'
-import {TopicCreate} from './topicCreate'
+import {TopicCreate, EntryCreate} from './topicCreate'
 import {Topic, Entry} from './detail'
 import {apiDetailList} from './lookup'
 
@@ -25,7 +25,6 @@ export function TopicDetailComponent(props) {
   const { topicId } = props;
   const [didLookup, setDidLookup] = useState(false);
   const [topic, setTopic] = useState(null);
-
   const handleBackendLookup = (response, status) => {
     if (status === 200) {
       setTopic(response);
@@ -39,9 +38,23 @@ export function TopicDetailComponent(props) {
       setDidLookup(true);
     }
   }, [topicId, didLookup, setDidLookup]);
+
+  const [newEntries, setNewEntries] = useState([])
+  const canEntry = topicId.canEntry === "false" ? false : true
+  const handleNewEntry = (newEntry) => {
+    let tempNewEntries = [...newEntries]
+    tempNewEntries.unshift(newEntry)
+    setNewEntries(tempNewEntries)
+  }
+
     return <div>
               {topic === null ? null : <Topic topic={topic} className={props.className}/> }
-              {topic === null ? null : <Entry topic={topic}/>}
+              {canEntry === true && <EntryCreate didEntry={handleNewEntry} className='col-12 mb-3' />}
+              <Entry newEntries={newEntries} {...topicId}/>
+
+              {topic === null ? null : <Entry entry={topic}/>}
             </div>
+
+            
 
 }

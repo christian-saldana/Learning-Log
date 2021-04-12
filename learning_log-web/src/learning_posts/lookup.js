@@ -5,6 +5,10 @@ export function apiTopicCreate(newTopic, callback) {
   
   }
 
+  export function apiEntryCreate(topicId, newEntry, callback) {
+    backendLookup("POST", `/topics/new_entry/${topicId}`, callback, {entries: newEntry})
+  }
+
   export function apiDetailList(topicId, callback) {
     backendLookup("GET", `/topics/${topicId}`, callback)
 }
@@ -13,7 +17,6 @@ export function apiTopicCreate(newTopic, callback) {
       let endpoint = "/topics/"
       if (username){
           endpoint = `/topics/?username=${username}`
-
       }
       if (nextUrl !== null && nextUrl !== undefined) {
         endpoint = nextUrl.replace("http://localhost:8000/api", "")
