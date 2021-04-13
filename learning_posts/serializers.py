@@ -22,38 +22,36 @@ class TopicCreateSerializer(serializers.ModelSerializer):
 
 class TopicSerializer(serializers.ModelSerializer):
     user = PublicProfileSerializer(source= 'user.profile', read_only=True)
-    entries = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    post_topic = serializers.SerializerMethodField(read_only=True)
     class Meta:
         model = Topic
         fields = [
             'user', 
             'id', 
-            'post_topic',
-            'entries'
+            'post_topic'
             ]
 
     def get_post_topic(self, obj):
         return obj.post_topic
 
 class EntrySerializer(serializers.ModelSerializer):
+    entries = serializers.StringRelatedField(many=True)
     date_added = serializers.DateTimeField(format="%b %d, %Y %H:%M")
     class Meta:
-        model = Entry
+        model = Topic
         fields = [ 
             'id', 
-            'topic',
-            'post_entry',
+            'post_topic',
+            'entries',
             'date_added'
             ]
-    def get_post_entry(self, obj):
-        return obj.post_entry
 
 class EntryCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Entry
         fields = [
-            'id', 
-            'topic', 
+            'id',
+            'topic',
             'post_entry',
             'date_added'
         ]

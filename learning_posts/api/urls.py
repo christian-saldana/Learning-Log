@@ -1,5 +1,7 @@
 from django.urls import path
+from rest_framework.urlpatterns import format_suffix_patterns
 
+from learning_posts.api import views
 
 from .views import (
     topics,
@@ -14,5 +16,7 @@ urlpatterns = [
     path('new_topic/', new_topic),
     path('<int:topic_id>/', topic, name='topic'),
     path('<int:topic_id>/delete/', delete_topic),
-    path('new_entry/<int:topic_id>/', new_entry),
+    path('new_entry/<int:topic_id>/', views.EntryList.as_view()),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)

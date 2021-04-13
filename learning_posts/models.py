@@ -11,8 +11,8 @@ class Topic(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
 
 
-    def __str__(self):
-        return self.post_topic
+    # def __str__(self):
+    #     return self.post_topic
 
     class Meta:
         ordering = ['-id']
@@ -20,7 +20,8 @@ class Topic(models.Model):
 
 class Entry(models.Model):
     """Something specific learned about a topic."""
-    topic = models.ForeignKey(Topic, related_name='entries', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='entries', on_delete=models.CASCADE)
+    topic = models.ForeignKey(Topic, blank=True, null=True, related_name='entries', on_delete=models.CASCADE)
     post_entry = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
  
@@ -33,4 +34,8 @@ class Entry(models.Model):
     def __str__(self):
        """Return a string representation of the model."""
        return self.post_entry
+    
+    def natural_key(self):
+        return (self.post_entry,) + self.topic.natural_key()
+
 
