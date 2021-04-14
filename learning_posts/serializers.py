@@ -53,5 +53,4 @@ class EntryCreateSerializer(serializers.ModelSerializer):
             'id',
             'topic',
             'post_entry',
-            'date_added'
         ]
