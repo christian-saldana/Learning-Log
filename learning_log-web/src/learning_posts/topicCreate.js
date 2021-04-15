@@ -34,7 +34,6 @@ export function TopicCreate(props){
       const path = window.location.pathname
       const match = path.match(/(?<topicid>\d+)/ )
       const urlTopicId = match ? match.groups.topicid : -1
-      console.log(urlTopicId)
       const textAreaRef = React.createRef()
       const {didEntry} = props
         const handleBackendUpdate = (response, status) => {
@@ -50,7 +49,7 @@ export function TopicCreate(props){
             const newVal = textAreaRef.current.value
             console.log(event)
             console.log(newVal)
-            apiEntryCreate(urlTopicId, urlTopicId, newVal, handleBackendUpdate)
+            apiEntryCreate(urlTopicId, newVal, handleBackendUpdate)
             textAreaRef.current.value=''
         }
         return <div className={props.className}>

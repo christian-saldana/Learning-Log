@@ -5,8 +5,8 @@ export function apiTopicCreate(newTopic, callback) {
   
   }
 
-  export function apiEntryCreate(topicId, current_topic, newEntry, callback) {
-    backendLookup("POST", `/topics/new_entry/${topicId}/`, callback, {topic: current_topic}, {post_entry: newEntry})
+  export function apiEntryCreate(current_topic, newEntry, callback) {
+    backendLookup("POST", "/topics/new_entry/", callback, {topic: current_topic, post_entry: newEntry})
   }
 
   export function apiDetailList(topicId, callback) {

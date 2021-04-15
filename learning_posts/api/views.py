@@ -74,6 +74,7 @@ def new_topic(request, *args, **kwargs):
     print(request.data)
     serializer = TopicCreateSerializer(data=request.data)
     if serializer.is_valid():
+        print(serializer)
         serializer.save(user=request.user)
         return Response(serializer.data, status=201)
     return Response({}, status=400)
@@ -88,6 +89,7 @@ def new_entry(request, *args, **kwargs):
     print(request.data)
     serializer = EntryCreateSerializer(data=request.data)
     if serializer.is_valid():
+        print(serializer)
         serializer.save(user=request.user)
         return Response(serializer.data, status=201)
     return Response({}, status=400)

@@ -54,3 +54,4 @@ class EntryCreateSerializer(serializers.ModelSerializer):
             'topic',
             'post_entry',
         ]
+
