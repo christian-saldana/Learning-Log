@@ -35,14 +35,14 @@ class TopicSerializer(serializers.ModelSerializer):
         return obj.post_topic
 
 class EntrySerializer(serializers.ModelSerializer):
-    entries = serializers.StringRelatedField(many=True)
+    post_entry = serializers.StringRelatedField(many=True)
     date_added = serializers.DateTimeField(format="%b %d, %Y %H:%M")
     class Meta:
         model = Topic
         fields = [ 
             'id', 
             'post_topic',
-            'entries',
+            'post_entry',
             'date_added'
             ]
 

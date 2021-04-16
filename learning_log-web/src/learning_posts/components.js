@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 
 import {TopicsList} from './topics'
 import {TopicCreate, EntryCreate} from './topicCreate'
-import {Topic, Entry, EntriesList} from './detail'
+import {Topic, EntriesList} from './detail'
 import {apiDetailList} from './lookup'
 
 

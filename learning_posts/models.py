@@ -20,8 +20,8 @@ class Topic(models.Model):
 
 class Entry(models.Model):
     """Something specific learned about a topic."""
-    user = models.ForeignKey(User, related_name='entries', on_delete=models.CASCADE)
-    topic = models.ForeignKey(Topic, blank=True, null=True, related_name='entries', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='post_entry', on_delete=models.CASCADE)
+    topic = models.ForeignKey(Topic, blank=True, null=True, related_name='post_entry', on_delete=models.CASCADE)
     post_entry = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
  

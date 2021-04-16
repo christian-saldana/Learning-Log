@@ -22,23 +22,6 @@ export function Topic(props) {
     </div>
   }
 
-export function Entry(props) {
-  const {topic} = props
-  const className = props.className ? props.className : 'col-10 mx-auto col-md-6'
-  return <div className={className}>
-    <div>
-      <ul className='m-5'>
-        <li>
-          <p> {topic.date_added} <br /> <br />
-              {topic.entries} {topic.entries.id}
-          </p>
-        </li>
-      </ul>
-              
-
-    </div>
-  </div>
-}
 
 export function EntriesList(props) {
   console.log(props)
@@ -48,14 +31,12 @@ export function EntriesList(props) {
   const [entriesInit, setEntriesInit] = useState([])
   const [entries, setEntries] = useState([])
   const [entriesDidSet, setEntriesDidSet] = useState(false)
-  console.log(entriesInit)
   useEffect(() =>{
       const final = [...props.newEntries].concat(entriesInit)
       if (final.length !== entries.length) {
           setEntries(final)
       }
   }, [props.newEntries, entries, entriesInit])
-  console.log(props.newEntries)
 
   useEffect(() => {
     if (entriesDidSet === false){
@@ -71,22 +52,16 @@ export function EntriesList(props) {
     }
   }, [entriesInit, entriesDidSet, setEntriesDidSet, urlTopicId])
   console.log(entries)
-
-
-      
+  console.log(entriesInit)
+  
 
   return <div>
-    <div>
-      <ul className='m-5'>
-        <li>
-          <p> {props.date_added} <br /> <br />
-              {props.entries} {props.entries.id}
-          </p>
-        </li>
+    <ul>
+        {entries.map(e => (
+          <li key={e.id}>{e.post_entry}</li>
+        ))}
       </ul>
-              
-
-    </div>
   </div>
-}
+    
+  }
 
