@@ -2,12 +2,11 @@ import React, {useState, useEffect} from 'react'
 
 import {TopicsList} from './topics'
 import {TopicCreate, EntryCreate} from './topicCreate'
-import {Topic, Entry} from './detail'
+import {Topic, Entry, EntriesList} from './detail'
 import {apiDetailList} from './lookup'
 
 
 export function TopicsComponent(props) {
-    console.log(props)
     const [newTopics, setNewTopics] = useState([])
     const canTopic = props.canTopic === "false" ? false : true
     const handleNewTopic = (newTopic) => {
@@ -23,7 +22,6 @@ export function TopicsComponent(props) {
 }
 
 export function TopicDetailComponent(props) {
-  console.log(props)
   const { topicId } = props;
   const [didLookup, setDidLookup] = useState(false);
   const [topic, setTopic] = useState(null);
@@ -41,13 +39,20 @@ export function TopicDetailComponent(props) {
       setDidLookup(true);
     }
   }, [topicId, didLookup, setDidLookup]);
+
+  const [newEntries, setNewEntries] = useState([])
+  const canEntry = topicId.canEntry === "false" ? false : true
+  const handleNewEntry = (newEntry) => {
+    let tempNewEntries = [...newEntries]
+    tempNewEntries.unshift(newEntry)
+    setNewEntries(tempNewEntries)
+    }
     return <div>
               {topic === null ? null : <Topic topic={topic} className={props.className}/> }
-              {<TopicCreate />}
-              {<EntryCreate />}
-              {topic === null ? null : <Entry topic={topic}/>}
-            </div>
+              {canEntry === true && <EntryCreate  didEntry={handleNewEntry} className='col-12 mb-3' />}
+              {topic === null ? null : <EntriesList newEntries={newEntries} {...topic}/>}
 
+            </div>
 }
 
             

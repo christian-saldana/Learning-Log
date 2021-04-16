@@ -1,6 +1,6 @@
 import {TopicsComponent, TopicDetailComponent} from './components'
 import {TopicCreate, EntryCreate} from './topicCreate'
-import {Topic, Entry} from './detail'
+import {Topic, Entry, EntriesList} from './detail'
 import {TopicsList} from './topics'
 
 export {
@@ -9,6 +9,7 @@ export {
     EntryCreate,
     Topic,
     Entry,
+    EntriesList,
     TopicsList,
     TopicsComponent,
 }
