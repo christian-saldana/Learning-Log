@@ -31,6 +31,7 @@ export function TopicCreate(props){
     }
 
     export function EntryCreate(props){
+      console.log(props)
       const path = window.location.pathname
       const match = path.match(/(?<topicid>\d+)/ )
       const urlTopicId = match ? match.groups.topicid : -1

@@ -25,18 +25,15 @@ export function Topic(props) {
 
 export function EntriesList(props) {
   console.log(props)
+  console.log(props.post_entry)
   const path = window.location.pathname
   const match = path.match(/(?<topicid>\d+)/ )
   const urlTopicId = match ? match.groups.topicid : -1
   const [entriesInit, setEntriesInit] = useState([])
-  const [entries, setEntries] = useState([])
   const [entriesDidSet, setEntriesDidSet] = useState(false)
-  useEffect(() =>{
-      const final = [...props.newEntries].concat(entriesInit)
-      if (final.length !== entries.length) {
-          setEntries(final)
-      }
-  }, [props.newEntries, entries, entriesInit])
+  console.log(entriesInit)
+  console.log(props.newEntries)
+  console.log(props.newEntries)
 
   useEffect(() => {
     if (entriesDidSet === false){
@@ -51,17 +48,23 @@ export function EntriesList(props) {
       apiDetailList(urlTopicId, myCallback)
     }
   }, [entriesInit, entriesDidSet, setEntriesDidSet, urlTopicId])
-  console.log(entries)
-  console.log(entriesInit)
+
+
+
+      const listItems = props.post_entry.map((post) =>
+    <li key={post.toString()}>
+      {post}
+    </li>
+  );
+
   
 
-  return <div>
+  return (
     <ul>
-        {entries.map(e => (
-          <li key={e.id}>{e.post_entry}</li>
-        ))}
-      </ul>
-  </div>
+      {props.newEntries.post_entry}
+      {listItems}
+    </ul>
+  )
     
   }
 
