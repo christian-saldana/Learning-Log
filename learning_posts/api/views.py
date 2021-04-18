@@ -94,12 +94,16 @@ def new_entry(request, *args, **kwargs):
         return Response(serializer.data, status=201)
     return Response({}, status=400)
 
-class EntryList(generics.ListCreateAPIView):
+class EntryCreate(generics.ListCreateAPIView):
     queryset = Entry.objects.filter()
     serializer_class = EntryCreateSerializer
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+class EntryList(generics.ListCreateAPIView):
+    queryset = Entry.objects.filter()
+    serializer_class = EntryCreateSerializer
 
 def django_new_entry(request, topic_id):
     """Add a new entry for a particular topic."""

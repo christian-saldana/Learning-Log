@@ -34,6 +34,10 @@ class Entry(models.Model):
     def __str__(self):
        """Return a string representation of the model."""
        return self.post_entry
+
+    def __str__(self):
+       """Return a string representation of the model."""
+       return self.topic
     
 
 

@@ -47,7 +47,6 @@ export function TopicDetailComponent(props) {
     tempNewEntries.unshift(newEntry)
     setNewEntries(tempNewEntries)
     }
-    console.log(newEntries)
     return <div>
               {topic === null ? null : <Topic topic={topic} className={props.className}/> }
               {canEntry === true && <EntryCreate  didEntry={handleNewEntry} className='col-12 mb-3' />}

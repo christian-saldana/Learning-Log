@@ -30,10 +30,17 @@ export function EntriesList(props) {
   const match = path.match(/(?<topicid>\d+)/ )
   const urlTopicId = match ? match.groups.topicid : -1
   const [entriesInit, setEntriesInit] = useState([])
+  const [entries, setEntries] = useState([])
   const [entriesDidSet, setEntriesDidSet] = useState(false)
   console.log(entriesInit)
   console.log(props.newEntries)
-  console.log(props.newEntries)
+  useEffect(() =>{
+      const final = [...props.newEntries].concat(entriesInit)
+      if (final.length !== entries.length) {
+          setEntries(final)
+      }
+  }, [props.newEntries, entries, entriesInit])
+  console.log(entries)
 
   useEffect(() => {
     if (entriesDidSet === false){
@@ -50,21 +57,18 @@ export function EntriesList(props) {
   }, [entriesInit, entriesDidSet, setEntriesDidSet, urlTopicId])
 
 
-
-      const listItems = props.post_entry.map((post) =>
-    <li key={post.toString()}>
-      {post}
-    </li>
-  );
+      
 
   
+  
 
-  return (
+    return <div>
     <ul>
-      {props.newEntries.post_entry}
-      {listItems}
-    </ul>
-  )
-    
-  }
+        {entries.map(e => (
+          <li key={e.id}>{e.post_entry}</li>
+        ))}
+      </ul>
+  </div>
+
+        }
 
