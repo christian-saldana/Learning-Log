@@ -39,6 +39,7 @@ export function TopicDetailComponent(props) {
       setDidLookup(true);
     }
   }, [topicId, didLookup, setDidLookup]);
+  
 
   const [newEntries, setNewEntries] = useState([])
   const canEntry = topicId.canEntry === "false" ? false : true

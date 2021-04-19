@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.http import HttpResponse, Http404, JsonResponse
 from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404
 from django.utils.http import is_safe_url
 from rest_framework import generics
 from rest_framework.authentication import SessionAuthentication
@@ -101,9 +102,11 @@ class EntryCreate(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-class EntryList(generics.ListCreateAPIView):
-    queryset = Entry.objects.filter()
-    serializer_class = EntryCreateSerializer
+class EntryList(generics.RetrieveAPIView):
+    lookup_field = 'int:topic_id'
+    queryset = Entry.objects.all()
+    serializer_class = EntrySerializer
+
 
 def django_new_entry(request, topic_id):
     """Add a new entry for a particular topic."""

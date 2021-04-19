@@ -14,7 +14,7 @@ from .views import (
 urlpatterns = [
     path('', topics),
     path('new_topic/', new_topic),
-    path('<int:topic_id>/', views.EntryList.as_view()),
+    path('<int:topic_id>/', topic),
     path('<int:topic_id>/delete/', delete_topic),
     path('new_entry/', views.EntryCreate.as_view()),
 ]

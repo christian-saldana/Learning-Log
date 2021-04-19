@@ -5,7 +5,6 @@ import {apiTopicsList} from './lookup'
 import {Topic} from './detail'
 
 export function TopicsList(props) {
-    console.log(props)
     const [topicsInit, setTopicsInit] = useState([])
     const [topics, setTopics] = useState([])
     const [nextUrl, setNextUrl] = useState(null)

@@ -34,10 +34,14 @@ class Entry(models.Model):
     def __str__(self):
        """Return a string representation of the model."""
        return self.post_entry
+    
+    class Meta:
+        ordering = ['-id']
 
-    def __str__(self):
-       """Return a string representation of the model."""
-       return self.topic
+    
+    @property
+    def topic_name(self):
+        return self.topic.name
     
 
 

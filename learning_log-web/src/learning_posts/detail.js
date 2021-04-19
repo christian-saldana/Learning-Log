@@ -32,15 +32,14 @@ export function EntriesList(props) {
   const [entriesInit, setEntriesInit] = useState([])
   const [entries, setEntries] = useState([])
   const [entriesDidSet, setEntriesDidSet] = useState(false)
-  console.log(entriesInit)
+  console.log(entriesInit.post_entry)
   console.log(props.newEntries)
   useEffect(() =>{
-      const final = [...props.newEntries].concat(entriesInit)
-      if (final.length !== entries.length) {
-          setEntries(final)
-      }
-  }, [props.newEntries, entries, entriesInit])
-  console.log(entries)
+    const final = [...props.newEntries]
+    if (final.length !== entries.length) {
+        setEntries(final)
+    }
+}, [props.newEntries, entries, entriesInit])
 
   useEffect(() => {
     if (entriesDidSet === false){
@@ -55,6 +54,8 @@ export function EntriesList(props) {
       apiDetailList(urlTopicId, myCallback)
     }
   }, [entriesInit, entriesDidSet, setEntriesDidSet, urlTopicId])
+  console.log(entries)
+  console.log(props.post_entry)
 
 
       
@@ -67,8 +68,12 @@ export function EntriesList(props) {
         {entries.map(e => (
           <li key={e.id}>{e.post_entry}</li>
         ))}
+
+        {props.post_entry.map((post, index) => 
+          <li key={index}>{post}</li>
+        )}
+
       </ul>
   </div>
-
         }
 
