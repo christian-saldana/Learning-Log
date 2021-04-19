@@ -16,6 +16,7 @@ export function TopicsList(props) {
         }
     }, [props.newTopics, topics, topicsInit])
 
+
     useEffect(() => {
       if (topicsDidSet === false) {
         const handleTopicsListLookup = (response, status) => {
@@ -51,7 +52,7 @@ export function TopicsList(props) {
     return <React.Fragment>{topics.map((item, index)=>{
       return <Topic 
       topic={item} 
-      className='my-5 py-5 border bg-white text-dark' 
+      className='text-center my-5 py-5 border-top mx-auto text-dark rounded' 
       key={`${index}-{item.id}`}/>
     })}
     { nextUrl !== null && <button onClick={handleLoadNext} className='btn btn-outline-primary'> Load Next </button>}

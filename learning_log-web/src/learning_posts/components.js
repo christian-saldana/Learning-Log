@@ -6,6 +6,7 @@ import {Topic, EntriesList} from './detail'
 import {apiDetailList} from './lookup'
 
 
+
 export function TopicsComponent(props) {
     const [newTopics, setNewTopics] = useState([])
     const canTopic = props.canTopic === "false" ? false : true
@@ -15,7 +16,7 @@ export function TopicsComponent(props) {
       setNewTopics(tempNewTopics)
     }
 
-    return <div className={props.className}>
+    return <div className='fw-bold fs-1'>
             {canTopic === true && <TopicCreate didTopic={handleNewTopic} className='col-12 mb-3' />}
           <TopicsList newTopics={newTopics} {...props}/>
     </div>
@@ -49,10 +50,9 @@ export function TopicDetailComponent(props) {
     setNewEntries(tempNewEntries)
     }
     return <div>
-              {topic === null ? null : <Topic topic={topic} className={props.className}/> }
+              {topic === null ? null :<Topic topic={topic} className='fw-bold fs-1'/> }
               {canEntry === true && <EntryCreate  didEntry={handleNewEntry} className='col-12 mb-3' />}
-              {topic === null ? null : <EntriesList newEntries={newEntries} {...topic}/>}
-
+              Entries: {topic === null ? null : <EntriesList newEntries={newEntries} {...topic}/>}
             </div>
 }
 

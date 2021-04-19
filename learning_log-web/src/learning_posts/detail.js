@@ -3,6 +3,7 @@ import {apiDetailList} from './lookup'
 
 export function Topic(props) {
     const {topic} = props
+    console.log(topic)
     const path = window.location.pathname
     const match = path.match(/(?<topicid>\d+)/ )
     const className = props.className ? props.className : 'col-10 mx-auto col-md-6'
@@ -13,27 +14,23 @@ export function Topic(props) {
       event.preventDefault()
       window.location.href = `/${topic.id}`
     }
-    return <div className={className}>
+    return <div>
       <div>
-        <p>{topic.id} - {topic.post_topic}</p>       
+        <p className={className}>{isDetail === false ? null : "Topic: "}{topic.post_topic}</p>       
 
       </div>
-      {isDetail === true ? null : <button className='btn btn-outline-primary' onClick={handleLink}>View</button>}
+      {isDetail === true ? null : <button className='btn btn-outline-primary' onClick={handleLink}>Read Entries</button>}
     </div>
   }
 
 
 export function EntriesList(props) {
-  console.log(props)
-  console.log(props.post_entry)
   const path = window.location.pathname
   const match = path.match(/(?<topicid>\d+)/ )
   const urlTopicId = match ? match.groups.topicid : -1
   const [entriesInit, setEntriesInit] = useState([])
   const [entries, setEntries] = useState([])
   const [entriesDidSet, setEntriesDidSet] = useState(false)
-  console.log(entriesInit.post_entry)
-  console.log(props.newEntries)
   useEffect(() =>{
     const final = [...props.newEntries]
     if (final.length !== entries.length) {
@@ -54,8 +51,6 @@ export function EntriesList(props) {
       apiDetailList(urlTopicId, myCallback)
     }
   }, [entriesInit, entriesDidSet, setEntriesDidSet, urlTopicId])
-  console.log(entries)
-  console.log(props.post_entry)
 
 
       
@@ -70,7 +65,7 @@ export function EntriesList(props) {
         ))}
 
         {props.post_entry.map((post, index) => 
-          <li key={index}>{post}</li>
+          <li className='text-center my-5 py-5 border text-dark rounded' key={index}>{post}</li>
         )}
 
       </ul>
