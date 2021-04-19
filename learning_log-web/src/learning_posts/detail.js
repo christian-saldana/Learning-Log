@@ -3,7 +3,6 @@ import {apiDetailList} from './lookup'
 
 export function Topic(props) {
     const {topic} = props
-    console.log(topic)
     const path = window.location.pathname
     const match = path.match(/(?<topicid>\d+)/ )
     const className = props.className ? props.className : 'col-10 mx-auto col-md-6'
@@ -52,21 +51,20 @@ export function EntriesList(props) {
     }
   }, [entriesInit, entriesDidSet, setEntriesDidSet, urlTopicId])
 
-
-      
-
-  
-  
+    console.log(props.newEntries)
+    console.log(props)
+    console.log(props.post_entry)
 
     return <div>
     <ul>
         {entries.map(e => (
-          <li key={e.id}>{e.post_entry}</li>
+          <li className='text-center my-5 py-5 border text-dark rounded' key={e.id}>{e.post_entry}</li>
         ))}
 
-        {props.post_entry.map((post, index) => 
-          <li className='text-center my-5 py-5 border text-dark rounded' key={index}>{post}</li>
-        )}
+        {props.post_entry.map(e  => (
+          <li key={e.id} >{e.date_added} 
+          <p className='text-center my-5 py-5 border text-dark rounded'>{e.post_entry}</p> </li>
+        ))}
 
       </ul>
   </div>

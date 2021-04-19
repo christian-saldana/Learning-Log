@@ -34,26 +34,27 @@ class TopicSerializer(serializers.ModelSerializer):
     def get_post_topic(self, obj):
         return obj.post_topic
 
-class EntrySerializer(serializers.ModelSerializer):
-    post_entry = serializers.StringRelatedField(many=True)
-    date_added = serializers.DateTimeField(format="%b %d, %Y %H:%M")
-    class Meta:
-        model = Topic
-        fields = [ 
-            'id', 
-            'post_topic',
-            'post_entry',
-            'date_added'
-            ]
-
 class EntryCreateSerializer(serializers.ModelSerializer):
+    date_added = serializers.DateTimeField(read_only=True, format="%b %d, %Y %H:%M")
     class Meta:
         model = Entry
         fields = [
             'id',
             'topic',
             'post_entry',
+            'date_added'
         ]
+
+class EntrySerializer(serializers.ModelSerializer):
+    post_entry = EntryCreateSerializer(many=True, read_only=True)
+    # date_added = serializers.DateTimeField(format="%b %d, %Y %H:%M")
+    class Meta:
+        model = Topic
+        fields = [ 
+            'id', 
+            'post_topic',
+            'post_entry',
+            ]
 
 # class EntrySerializer(serializers.ModelSerializer):
 #     topic = serializers.SlugRelatedField(read_only=True, slug_field='post_topic')

@@ -27,9 +27,7 @@ class Entry(models.Model):
  
     class Meta:
         verbose_name_plural = 'entries'
-    
-    # def __str__(self):
-    #     return '%s' % (self.post_entry)
+
 
     def __str__(self):
        """Return a string representation of the model."""
@@ -39,9 +37,8 @@ class Entry(models.Model):
         ordering = ['-id']
 
     
-    @property
-    def topic_name(self):
-        return self.topic.name
+    # def post(self):
+    #     return self.date_added in {self.post_entry}  
     
 
 
