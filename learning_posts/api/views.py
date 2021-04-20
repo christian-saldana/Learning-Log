@@ -87,10 +87,8 @@ def new_topic(request, *args, **kwargs):
 #@permission_classes([IsAuthenticated])
 def new_entry(request, *args, **kwargs):
     """Adds new entry to learning log"""
-    print(request.data)
     serializer = EntryCreateSerializer(data=request.data)
     if serializer.is_valid():
-        print(serializer)
         serializer.save(user=request.user)
         return Response(serializer.data, status=201)
     return Response({}, status=400)

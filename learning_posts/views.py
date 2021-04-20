@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.utils.http import is_safe_url
 from .models import Topic, Entry
 from .forms import EntryForm
+from learning_posts.api.views import topic
 
 ALLOWED_HOSTS = settings.ALLOWED_HOSTS
 

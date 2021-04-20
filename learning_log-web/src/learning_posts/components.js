@@ -50,9 +50,9 @@ export function TopicDetailComponent(props) {
     setNewEntries(tempNewEntries)
     }
     return <div>
-              {topic === null ? null :<Topic topic={topic} className='fw-bold fs-1'/> }
+              {topic === null ? null :<Topic topic={topic} className='fw-bold fs-1' /> }
               {canEntry === true && <EntryCreate  didEntry={handleNewEntry} className='col-12 mb-3' />}
-              <div className = 'fs-2'>Entries: </div> <br/>
+              <p className = 'fs-2'>Entries: </p> <br/>
               {topic === null ? null : <EntriesList newEntries={newEntries} {...topic}/>}
             </div>
 }

@@ -40,7 +40,7 @@ urlpatterns = [
     path('login/', login_view),
     path('logout/', logout_view),
     path('register/', register_view),
-    path('<int:topic_id>', topics_detail_view),
+    path('<int:topic_id>', topics_detail_view, name='topic'),
     re_path(r'profiles?/', include('profiles.urls')),
     path('edit_entry/<int:entry_id>/', edit_entry, name='edit_entry'),
     path('api/topics/', include('learning_posts.api.urls'))

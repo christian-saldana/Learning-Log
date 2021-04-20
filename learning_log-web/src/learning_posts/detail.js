@@ -15,12 +15,13 @@ export function Topic(props) {
     }
     return <div>
       <div>
-        <p className={className}>{isDetail === false ? null : "Topic: "}{topic.post_topic}</p>       
-
+        <p className={className}>{topic.post_topic}</p>       
       </div>
       {isDetail === true ? null : <button className='btn btn-outline-primary' onClick={handleLink}>Read Entries</button>}
     </div>
   }
+
+
 
 
 export function EntriesList(props) {
@@ -51,22 +52,23 @@ export function EntriesList(props) {
     }
   }, [entriesInit, entriesDidSet, setEntriesDidSet, urlTopicId])
 
-    console.log(props.newEntries)
-    console.log(props)
-    console.log(props.post_entry)
+    const handleLink = (event) => {
+    window.location.href = `/edit_entry/${event}`
+  }
 
     return <div>
-    <ul>
-        {entries.map(e => (
-          <li className='text-center my-5 py-5 border text-dark rounded' key={e.id}>{e.post_entry}</li>
+          {entries.map(e => (
+        <div className='card-body border pb-5' key={e.id}>{e.post_entry} </div> 
         ))}
 
         {props.post_entry.map(e  => (
-          <li key={e.id} >{e.date_added} 
-          <p className='text-center my-5 py-5 border text-dark rounded'>{e.post_entry}</p> </li>
+        <div key={e.id}> 
+          <h4 className='card-header border-top'> {e.date_added} 
+              <button variant="contained" style={{float: 'right'}} className='float-right btn-sm' onClick={() => handleLink(e.id)}>Edit Entry</button>
+          </h4> 
+            <p className='card-body border pb-5' > {e.post_entry} </p> 
+        </div> 
         ))}
-
-      </ul>
-  </div>
-        }
+      </div>
+}
 
