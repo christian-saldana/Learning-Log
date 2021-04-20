@@ -5,7 +5,7 @@ export function Topic(props) {
     const {topic} = props
     const path = window.location.pathname
     const match = path.match(/(?<topicid>\d+)/ )
-    const className = props.className ? props.className : 'col-10 mx-auto col-md-6'
+    const className = props.className ? props.className : 'fw-bold fs-1 col-10 mx-auto col-md-6'
     const urlTopicId = match ? match.groups.topicid : -1
     const isDetail = `${topic.id}` === `${urlTopicId}`
 
@@ -13,10 +13,12 @@ export function Topic(props) {
       event.preventDefault()
       window.location.href = `/${topic.id}`
     }
+    
     return <div>
       <div>
         <p className={className}>{topic.post_topic}</p>       
       </div>
+      {isDetail === true ? null : <p className='fs-2'> Most recent entry: <br/> {topic.post_entry[0]} </p>}
       {isDetail === true ? null : <button className='btn btn-outline-primary' onClick={handleLink}>Read Entries</button>}
     </div>
   }

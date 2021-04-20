@@ -16,7 +16,7 @@ export function TopicsComponent(props) {
       setNewTopics(tempNewTopics)
     }
 
-    return <div className='fw-bold fs-1'>
+    return <div>
             {canTopic === true && <TopicCreate didTopic={handleNewTopic} className='col-12 mb-3' />}
           <TopicsList newTopics={newTopics} {...props}/>
     </div>
@@ -50,7 +50,7 @@ export function TopicDetailComponent(props) {
     setNewEntries(tempNewEntries)
     }
     return <div>
-              {topic === null ? null :<Topic topic={topic} className='fw-bold fs-1' /> }
+              {topic === null ? null :<Topic topic={topic} /> }
               {canEntry === true && <EntryCreate  didEntry={handleNewEntry} className='col-12 mb-3' />}
               <p className = 'fs-2'>Entries: </p> <br/>
               {topic === null ? null : <EntriesList newEntries={newEntries} {...topic}/>}

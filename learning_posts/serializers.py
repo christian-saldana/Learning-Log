@@ -6,6 +6,27 @@ from .models import Topic, Entry
 
 MAX_TITLE_LENGTH = settings.MAX_TITLE_LENGTH
 
+class EntryCreateSerializer(serializers.ModelSerializer):
+    date_added = serializers.DateTimeField(read_only=True, format="%b %d, %Y %H:%M")
+    class Meta:
+        model = Entry
+        fields = [
+            'id',
+            'topic',
+            'post_entry',
+            'date_added'
+        ]
+
+class EntrySerializer(serializers.ModelSerializer):
+    post_entry = EntryCreateSerializer(many=True, read_only=True)
+    class Meta:
+        model = Topic
+        fields = [ 
+            'id', 
+            'post_topic',
+            'post_entry',
+            ]
+
 class TopicCreateSerializer(serializers.ModelSerializer):
     user = PublicProfileSerializer(source='user.profile', read_only=True)#serializers.SerializerMethodField(read_only=True)
     class Meta:
@@ -23,51 +44,22 @@ class TopicCreateSerializer(serializers.ModelSerializer):
 class TopicSerializer(serializers.ModelSerializer):
     user = PublicProfileSerializer(source= 'user.profile', read_only=True)
     post_topic = serializers.SerializerMethodField(read_only=True)
+    post_entry = serializers.SlugRelatedField(
+        many=True,
+        read_only=True,
+        slug_field='post_entry'
+     )
     class Meta:
         model = Topic
         fields = [
             'user', 
             'id', 
-            'post_topic'
+            'post_topic',
+            'post_entry'
             ]
 
     def get_post_topic(self, obj):
         return obj.post_topic
-
-class EntryCreateSerializer(serializers.ModelSerializer):
-    date_added = serializers.DateTimeField(read_only=True, format="%b %d, %Y %H:%M")
-    class Meta:
-        model = Entry
-        fields = [
-            'id',
-            'topic',
-            'post_entry',
-            'date_added'
-        ]
-
-class EntrySerializer(serializers.ModelSerializer):
-    post_entry = EntryCreateSerializer(many=True, read_only=True)
-    # date_added = serializers.DateTimeField(format="%b %d, %Y %H:%M")
-    class Meta:
-        model = Topic
-        fields = [ 
-            'id', 
-            'post_topic',
-            'post_entry',
-            ]
-
-# class EntrySerializer(serializers.ModelSerializer):
-#     topic = serializers.SlugRelatedField(read_only=True, slug_field='post_topic')
-#     class Meta:
-#         model = Entry
-#         fields = [
-#             'id',
-#             'topic',
-#             'post_entry',
-#         ]
-
-#     def get_topic(self, obj):
-#         return obj.topic
     
     
 
