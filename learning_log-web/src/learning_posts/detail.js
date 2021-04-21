@@ -67,7 +67,7 @@ export function EntriesList(props) {
     return <div>
           {entries.map(e => (
         <div key={e.id}>
-          <h4 className='card-header border-top border-primary'> {e.date_added} 
+          <h4 className='card-header border-top border-learning_log'> {e.date_added} 
               <button variant="contained" style={{float: 'right'}} className='btn btn-sm btn-link' onClick={() => handleLink(e.id)}>Edit Entry</button>
           </h4> 
             <p className='card-body border pb-5'> {e.post_entry} </p></div> 
@@ -75,7 +75,7 @@ export function EntriesList(props) {
 
         {props.post_entry.map(e  => (
         <div key={e.id}> 
-          <h4 className='card-header border-top border-primary'> {e.date_added} 
+          <h4 className='card-header border-top border-learning_log'> {e.date_added} 
               <button variant="contained" style={{float: 'right'}} className='btn btn-sm btn-link' onClick={() => handleLink(e.id)}>Edit Entry</button>
           </h4> 
             <p className='card-body border pb-5' > {e.post_entry} </p> 

@@ -17,6 +17,7 @@ export function TopicsComponent(props) {
     }
 
     return <div className='mx-5'>
+      
             {canTopic === true && <TopicCreate didTopic={handleNewTopic} />}
           <TopicsList newTopics={newTopics} {...props}/>
     </div>

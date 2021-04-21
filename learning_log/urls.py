@@ -26,17 +26,17 @@ from accounts.views import (
 )
 
 from learning_posts.views import (
+    index,
     topics_list_view,
     topics_detail_view,
+    edit_entry,
 )
 
-from learning_posts.views import (
-    edit_entry
-)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', topics_list_view),
+    path('', index),
+    path('topics/', topics_list_view),
     path('login/', login_view),
     path('logout/', logout_view),
     path('register/', register_view),
