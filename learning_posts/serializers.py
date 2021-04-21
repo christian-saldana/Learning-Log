@@ -18,6 +18,7 @@ class EntryCreateSerializer(serializers.ModelSerializer):
         ]
 
 class EntrySerializer(serializers.ModelSerializer):
+    user = PublicProfileSerializer(source='user.profile', read_only=True)
     post_entry = EntryCreateSerializer(many=True, read_only=True)
     class Meta:
         model = Topic
@@ -25,13 +26,21 @@ class EntrySerializer(serializers.ModelSerializer):
             'id', 
             'post_topic',
             'post_entry',
+            'user'
             ]
+    def get_post_topic(self, obj):
+        return obj.post_topic
 
 class TopicCreateSerializer(serializers.ModelSerializer):
     user = PublicProfileSerializer(source='user.profile', read_only=True)#serializers.SerializerMethodField(read_only=True)
+    post_entry = serializers.SlugRelatedField(
+        many=True,
+        read_only=True,
+        slug_field='post_entry'
+     )
     class Meta:
         model = Topic
-        fields = ['user', 'id', 'post_topic']
+        fields = ['user', 'id', 'post_topic', 'post_entry']
 
         def validate_post_topic(self, value):
             if len(value) > MAX_TITLE_LENGTH:

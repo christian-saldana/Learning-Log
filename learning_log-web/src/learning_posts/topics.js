@@ -15,6 +15,7 @@ export function TopicsList(props) {
             setTopics(final)
         }
     }, [props.newTopics, topics, topicsInit])
+    console.log(props.newTopics)
 
 
     useEffect(() => {
@@ -53,9 +54,9 @@ export function TopicsList(props) {
     return <React.Fragment>{topics.map((item, index)=>{
       return <Topic 
       topic={item} 
-      className='card-header text-center fw-bold fs-1 my-5 py-5 border-top mx-auto text-dark rounded' 
+      className='card-header border-top text-center fw-bold fs-1 my-3 py-3 text-dark' 
       key={`${index}-{item.id}`}/> 
     })}
-    { nextUrl !== null && <button onClick={handleLoadNext} className='btn btn-outline-primary'> Load Next </button>}
+    { nextUrl !== null && <button onClick={handleLoadNext} className='btn btn-outline-primary mt-5'> Load Next </button>}
     </React.Fragment>
   }

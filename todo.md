@@ -1,6 +1,7 @@
-1. Add entry snippet with topics in topics list
+1. Add entry snippet with topics in topics list x
 2. Add summary sentence under topic
 3. Capitalize topic in topic list and topic detail x
 4. Possibly add pictures
 5. Add in navbar/quicklinks to previous pages
-6. 
+6. Redirect into topic detail page after creating new topic
+7. Verify authentication and authorization works properly

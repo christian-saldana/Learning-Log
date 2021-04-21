@@ -31,7 +31,7 @@ def get_paginated_queryset_response(qs, request):
 
 
 @api_view(['GET'])
-#@permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def topics(request,*args, **kwargs):
     #qs = Topic.objects.filter(user=request.user.id)
     qs = Topic.objects.all()
@@ -43,6 +43,7 @@ def topics(request,*args, **kwargs):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def topic(request, topic_id, *args, **kwargs):
     qs = Topic.objects.filter(id=topic_id)
     if not qs.exists():

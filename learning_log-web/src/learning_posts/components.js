@@ -16,8 +16,8 @@ export function TopicsComponent(props) {
       setNewTopics(tempNewTopics)
     }
 
-    return <div>
-            {canTopic === true && <TopicCreate didTopic={handleNewTopic} className='col-12 mb-3' />}
+    return <div className='mx-5'>
+            {canTopic === true && <TopicCreate didTopic={handleNewTopic} />}
           <TopicsList newTopics={newTopics} {...props}/>
     </div>
 }
@@ -49,7 +49,7 @@ export function TopicDetailComponent(props) {
     tempNewEntries.unshift(newEntry)
     setNewEntries(tempNewEntries)
     }
-    return <div>
+    return <div className='mx-5'>
               {topic === null ? null :<Topic topic={topic} /> }
               {canEntry === true && <EntryCreate  didEntry={handleNewEntry} className='col-12 mb-3' />}
               <p className = 'fs-2'>Entries: </p> <br/>

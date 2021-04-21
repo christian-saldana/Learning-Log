@@ -11,8 +11,8 @@ class Topic(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
 
 
-    # def __str__(self):
-    #     return self.post_topic
+    def __str__(self):
+        return self.post_topic
 
     class Meta:
         ordering = ['-id']
