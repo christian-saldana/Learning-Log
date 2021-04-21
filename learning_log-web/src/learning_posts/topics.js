@@ -49,12 +49,11 @@ export function TopicsList(props) {
         apiTopicsList(props.username, handleLoadNextResponse, nextUrl)
       }
     }
-    console.log(topics)
 
     return <React.Fragment>{topics.map((item, index)=>{
       return <Topic 
       topic={item} 
-      className='card-header border-top text-center fw-bold fs-1 my-3 py-3 text-dark' 
+      className='card-header border-top border-primary text-center fw-bold fs-1 my-3 py-3 text-dark' 
       key={`${index}-{item.id}`}/> 
     })}
     { nextUrl !== null && <button onClick={handleLoadNext} className='btn btn-outline-primary mt-5'> Load Next </button>}
