@@ -14,7 +14,9 @@ def index(request, *args, **kwargs):
     return render(request, 'pages/index.html')
 
 def topics_list_view(request, *args, **kwargs):
-    return render(request, 'topics/list.html')
+    topics = Topic.objects.order_by('date_added')
+    context = {'topics': topics}
+    return render(request, 'topics/list.html', context)
 
 def topics_detail_view(request, topic_id, *args, **kwargs):
     return render(request, 'topics/detail.html', context={"topic_id":topic_id})
