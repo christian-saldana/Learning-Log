@@ -23,8 +23,8 @@ export function Topic(props) {
         {isDetail === true ? null : <button className='btn btn-outline-primary' onClick={handleLink}> 
         {topic.post_entry.length === 0 ? null : <> Read Entries </>} 
         {topic.post_entry.length !== 0 ? null : <> Add Entries </>}</button>}    
-      </div>
-      <div className = 'card-footer'> {isDetail === true ? null : <div> <p > Total entries for this topic : {topic.post_entry.length} </p></div>}  </div>
+      </div>  
+      {isDetail === true ? null : <div className = 'card-footer'> <p > Total entries for this topic : {topic.post_entry.length} </p></div>} 
       
     </div>
   }

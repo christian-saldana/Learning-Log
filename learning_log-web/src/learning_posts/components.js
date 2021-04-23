@@ -53,7 +53,7 @@ export function TopicDetailComponent(props) {
     }
     return <div className='mx-5'>
               {topic === null ? null :<Topic topic={topic} /> }
-              {canEntry === true && <EntryCreate  didEntry={handleNewEntry} className='col-12 mb-3' />}
+              {canEntry === true && <EntryCreate  didEntry={handleNewEntry} className='col-12 mb-3 mt-5' />}
               <p className = 'fs-2'>Entries: </p> <br/>
               {topic === null ? null : <EntriesList newEntries={newEntries} {...topic}/>}
             </div>

@@ -2,11 +2,26 @@
 
 {% block content %}
 
-  <div class="jumbotron">
-  	<h1 class="display-3">Learning Log</h1>
+	<div 
+		class = "mt-5"
+		style="
+        	background-image: url('/static/media/notebooks.jpg');
+			background-attachment: fixed;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+        	height: 100vh;
+		">
+		<div class="p-5 rounded-lg mask" style="background-color: rgba(0, 0, 0, 0.2); height:100vh">
+			<div>
+			<h1 class="display-4 text-white justify-content-center">Hello, world!</h1>
+			<p class="lead text-white">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+			<hr class="my-4">
+			<p class="text-white">It uses utility classes for typography and spacing to space content out within the larger container.</p>
+			<a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+			</div>
+		  </div>
 
-  	<p class="lead">Welcome to my Learning Log. Learning log allows you to keep track of your learning wherever you are.
-	</p>
-  </div>
+	</div>
 
 {% endblock content %}
