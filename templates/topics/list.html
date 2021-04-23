@@ -4,24 +4,16 @@
 
             <div class="nav-scroller py-1 mb-2 mt-5 mx-5">
                 <nav class="nav d-flex justify-content-between" >
-                    {% for topic in topics|slice:"10" %}
+                    {% for topic in topics|slice:":10" %}
                         <a class="p-2 link-secondary" href="/{{ topic.id }}"> {{ topic }}</a>
                     {% endfor %}
                 </nav>
             </div>
 
             <main class="container ">
-                <div class="p-4 p-md-5 mb-4 text-white rounded bg-primary">
+                <div class="p-4 p-md-5 mb-4 text-white rounded bg-learning_log">
                   <div class="col-md-6 px-0">
-                      {% for topic in topics %}
-                      {% if forloop.last %}
-                    <h1 class="display-4 fst-italic">{{ topic }} </h1>
-                    {% if topic.post_entry == [] %}
-                    <p class="lead my-3">{{ topic.post_entry }}</p>
-                    <p class="lead mb-0"><a href="/{{ topic.id }}" class="text-white fw-bold">Continue reading...</a></p>
-                    {% endif %}
-                    {% endif %}
-                    {% endfor %}
+                    <h1 class="display-4 fst-italic"> What is something you learned today? </h1>
                   </div>
                 </div>
             </main>

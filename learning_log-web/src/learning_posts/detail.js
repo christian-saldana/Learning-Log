@@ -14,18 +14,18 @@ export function Topic(props) {
       window.location.href = `/${topic.id}`
     }
 
-    return <div>
-      <div>
-        <p className={className}>{topic.post_topic}</p>       
-      </div>
-
-
-      {isDetail === true ? null : <p className='fs-4'> {topic.post_entry.length === 0 ? null : <> Most Recent Entry: </>} </p>}
-      {isDetail === true ? null : <p className='fs-4'> {topic.post_entry.length !== 0 ? null : <> Start Adding Entries: </>} </p>}
-      {isDetail === true ? null : <div> <p > {topic.post_entry[0]} </p></div>}
-      {isDetail === true ? null : <button className='btn btn-outline-primary' onClick={handleLink}> 
+    return <div className = 'card mt-5'>
+      <div className = 'card-body'>
+        <p className={className}>{topic.post_topic}</p>  
+        {isDetail === true ? null : <p className='fs-4'> {topic.post_entry.length === 0 ? null : <> Most Recent Entry: </>} </p>}
+        {isDetail === true ? null : <p className='fs-4'> {topic.post_entry.length !== 0 ? null : <> Start Adding Entries: </>} </p>}
+        {isDetail === true ? null : <div> <p > {topic.post_entry[0]} </p></div>} 
+        {isDetail === true ? null : <button className='btn btn-outline-primary' onClick={handleLink}> 
         {topic.post_entry.length === 0 ? null : <> Read Entries </>} 
-        {topic.post_entry.length !== 0 ? null : <> Add Entries </>}</button>}
+        {topic.post_entry.length !== 0 ? null : <> Add Entries </>}</button>}    
+      </div>
+      <div className = 'card-footer'> {isDetail === true ? null : <div> <p > Total entries for this topic : {topic.post_entry.length} </p></div>}  </div>
+      
     </div>
   }
 
