@@ -2,23 +2,24 @@
 
 {% block content %}
 
-	<div 
-		class = "mt-5"
+		<div
+		class="bg-image"
 		style="
-        	background-image: url('/static/media/notebooks.jpg');
-			background-attachment: fixed;
-			background-position: center;
-			background-repeat: no-repeat;
-			background-size: cover;
-        	height: 100vh;
-		">
-		<div class="p-5 rounded-lg mask" style="background-color: rgba(0, 0, 0, 0.2); height:100vh">
-			<div>
-			<h1 class="display-4 text-white justify-content-center">Hello, world!</h1>
-			<p class="lead text-white">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+		  background-image: url('/static/media/notebooks.jpg');
+		  background-size: cover;
+		  height: 100vh;
+		"
+	  >
+		<div class="mask" style="background-color: rgba(0, 0, 0, 0.3); height:100vh">
+			<div class='d-flex flex-column justify-content-center align-items-center h-100'>
+			<h1 class="display-4 text-white">Welcome to Learning Log!</h1>
+			<p class="lead text-white">This is your personal journal. With this web application you can track your progress on any topic you are learning about.</p>
 			<hr class="my-4">
-			<p class="text-white">It uses utility classes for typography and spacing to space content out within the larger container.</p>
-			<a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+			<p class="text-white">Get started by registering or login to continue your journey.</p>
+			<div class='d-flex flex-row justify-content-between'>
+				<a class="btn btn-dark btn-lg active mx-5" href="/register" role="button" aria-pressed="true">Register</a>
+				<a class="btn btn-dark btn-lg active mx-5" href="/login" role="button" aria-pressed="true">Login</a>
+			</div>
 			</div>
 		  </div>
 

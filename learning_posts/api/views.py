@@ -23,7 +23,7 @@ ALLOWED_HOSTS = settings.ALLOWED_HOSTS
 
 def get_paginated_queryset_response(qs, request):
     paginator = PageNumberPagination()
-    paginator.page_size = 5
+    paginator.page_size = 10
     paginated_qs = paginator.paginate_queryset(qs, request)
     serializer = TopicSerializer(paginated_qs, many=True)
     return paginator.get_paginated_response(serializer.data)
@@ -33,8 +33,8 @@ def get_paginated_queryset_response(qs, request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def topics(request,*args, **kwargs):
-    #qs = Topic.objects.filter(user=request.user.id)
-    qs = Topic.objects.all()
+    qs = Topic.objects.filter(user=request.user.id)
+    #qs = Topic.objects.all()
     username = request.GET.get('username')
     if username != None:
         qs = qs.filter(user__username__iexact=username)

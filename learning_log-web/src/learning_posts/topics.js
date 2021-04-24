@@ -55,6 +55,6 @@ export function TopicsList(props) {
       className='card-title border-learning_log rounded text-left fw-bold fs-1 my-3 py-3 text-dark' 
       key={`${index}-{item.id}`}/> 
     })} 
-    { nextUrl !== null && <button onClick={handleLoadNext} className='btn btn-outline-primary mt-5'> Load Next </button>}
+    { nextUrl !== null && <button onClick={handleLoadNext} className='btn btn-dark mt-5'> Load Next </button>}
     </React.Fragment>
   }

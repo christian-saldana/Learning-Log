@@ -25,7 +25,7 @@ export function TopicCreate(props){
             <textarea ref={textAreaRef} required={true} className='form-control form-control-sm' name='topic'>
   
             </textarea>
-            <button type='submit' className='btn btn-primary my-3'>New Topic</button>
+            <button type='submit' className='btn btn-outline-dark my-3'>New Topic</button>
           </form>
     </div>
     }
@@ -55,7 +55,7 @@ export function TopicCreate(props){
               <textarea ref={textAreaRef} required={true} className='form-control form-control-sm' name='entry'>
     
               </textarea>
-              <button type='submit' className='btn btn-primary my-3'>New Entry</button>
+              <button type='submit' className='btn btn-outline-dark my-3'>New Entry</button>
             </form>
       </div>
       }

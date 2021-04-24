@@ -14,7 +14,8 @@ def index(request, *args, **kwargs):
     return render(request, 'pages/index.html')
 
 def topics_list_view(request, *args, **kwargs):
-    topics = Topic.objects.order_by('date_added')
+    topics = Topic.objects.filter(user=request.user.id).order_by('date_added')
+    print(topics)
     context = {'topics': topics}
     return render(request, 'topics/list.html', context)
 
