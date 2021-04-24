@@ -32,7 +32,7 @@ def get_paginated_queryset_response(qs, request):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-#@authentication_classes([SessionAuthentication])
+@authentication_classes([SessionAuthentication])
 def topics(request,*args, **kwargs):
     qs = Topic.objects.filter(user=request.user.id)
     #qs = Topic.objects.all()
