@@ -32,6 +32,7 @@ def get_paginated_queryset_response(qs, request):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
+@authentication_classes([SessionAuthentication])
 def topics(request,*args, **kwargs):
     qs = Topic.objects.filter(user=request.user.id)
     #qs = Topic.objects.all()
@@ -44,6 +45,7 @@ def topics(request,*args, **kwargs):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
+@authentication_classes([SessionAuthentication])
 def topic(request, topic_id, *args, **kwargs):
     qs = Topic.objects.filter(id=topic_id)
     if not qs.exists():
@@ -69,8 +71,8 @@ def delete_topic(request, topic_id, *args, **kwargs):
 
 
 @api_view(['POST', 'GET'])
-#@authentication_classes([SessionAuthentication])
-#@permission_classes([IsAuthenticated])
+@authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticated])
 def new_topic(request, *args, **kwargs):
     """Adds new topic to learning log"""
     print(request.data)
