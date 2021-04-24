@@ -1,10 +1,10 @@
 __pycache__
 env
 *.sqlite3
-static-root/
-staticfiles/
+# static-root/
+# staticfiles/
 node_modules/
-static/
+# static/
 
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
