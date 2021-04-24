@@ -163,3 +163,11 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_URLS_REGEX = r'^/api/.*$'
 
+import django_heroku
+django_heroku.settings(locals())
+
+if os.environ.get('DEBUG') == 'TRUE':
+ DEBUG = True
+elif os.environ.get('DEBUG') == 'FALSE':
+ DEBUG = False
+
