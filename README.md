@@ -3,6 +3,6 @@ I completed this project from scratch with a Django backend and React frontend. 
 
 ## Images of the application
 
-![Home Page](/images/image_index.png)
-    ![Topics](/images/image_topics.png)
-    ![Entries](/images/image_entries.png)
+![Home Page](/images/image_index.PNG)
+    ![Topics](/images/image_topics.PNG)
+    ![Entries](/images/image_entries.PNG)
