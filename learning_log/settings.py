@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'r^88^3j(t4$i9gv!owt&@9l*zaw-pqbc9+#2re$9!r652!dzni'
+SECRET_KEY = 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -85,8 +85,14 @@ WSGI_APPLICATION = 'learning_log.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'pOSTpASS@124',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -150,7 +156,6 @@ if DEBUG:
     ]
     # DEFAULT_AUTHENTICATION_CLASSES += [
     #     'learning_log.rest_api.dev.DevAuthentication',
-
     # ]
 
 REST_FRAMEWORK = {

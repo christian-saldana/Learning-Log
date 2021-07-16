@@ -19,7 +19,8 @@ export function apiTopicCreate(newTopic, callback) {
           endpoint = `/topics/?username=${username}`
       }
       if (nextUrl !== null && nextUrl !== undefined) {
-        endpoint = nextUrl.replace("https://learning-log-project2021.herokuapp.com/api", "")
+        // endpoint = nextUrl.replace("https://learning-log-project2021.herokuapp.com/api", "")
+        endpoint = nextUrl.replace("http://localhost:8000/api", "")
       }
       backendLookup("GET", endpoint, callback)
   }
