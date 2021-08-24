@@ -16,14 +16,14 @@
 	  <div class="container home-image"></div>
 
 
-		<main class="mask col-10 col-md-4">
+		<div class="mask jumbotron">
 			<div class='d-flex flex-column justify-content-center h-100'>
-			<h1 class="welcome-header font-weight-bold">Welcome to <br> Learning Log!</h1>
-			<p>Working on a new skill or just want to record your thoughts?<br>Learning Log allows you to create time-stamped entries so that <br> you can review your progress.</p>
+			<h1 class="welcome-header display-1 font-weight-bold">Welcome to <br> Learning Log!</h1>
+			<p class="lead">Working on a new skill or just want to record your thoughts?<br>Learning Log allows you to create time-stamped entries so that <br> you can review your progress.</p>
 			<hr class="line my-3" />
 			{% if request.user.is_authenticated %}
 			<div class='d-flex flex-row justify-content-between'>
-				<p>Continue to your learning journal.</p> 
+				<p class="lead">Continue to your learning journey.</p> 
 			</div>
 			<div class='d-flex'> <a href="/topics" class="btn btn-md" role="button" aria-pressed="true">Journal</a></div>
 			{% else %}
@@ -34,7 +34,7 @@
 			{% endif %}
 			</div>
 			</div>
-		</main>
+		</div>
 
 	</div>
 
