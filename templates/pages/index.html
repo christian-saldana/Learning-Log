@@ -2,33 +2,39 @@
 
 {% block content %}
 
-		<div
+		<!-- <div
 		class="bg-image"
 		style="
+		position: absolute;
+		height:100vh;
+		width:100vw;
 		  background-image: url('/static/media/blog_bg.jpg');
 		  background-size: cover;
-		  height: 100vh;
 		"
-	  >
-		<div class="mask" style="background-color: rgba(0, 0, 0, 0.4); height:100vh">
-			<div class='d-flex flex-column justify-content-center align-items-center h-100'>
-			<h1 class="display-4 text-white">Welcome to Learning Log!</h1>
-			<p class="lead text-white">This is your personal journal. With this web application you can track your progress on any topic you are learning about.</p>
-			<hr class="my-4">
+	  > -->
+
+	  <div class="container home-image"></div>
+
+
+		<main class="mask col-10 col-md-4">
+			<div class='d-flex flex-column justify-content-center h-100'>
+			<h1 class="welcome-header font-weight-bold">Welcome to <br> Learning Log!</h1>
+			<p>Working on a new skill or just want to record your thoughts?<br>Learning Log allows you to create time-stamped entries so that <br> you can review your progress.</p>
+			<hr class="line my-3" />
 			{% if request.user.is_authenticated %}
 			<div class='d-flex flex-row justify-content-between'>
-				<p class="text-white">Continue to your learning journal.</p> 
+				<p>Continue to your learning journal.</p> 
 			</div>
-			<div class='d-flex'> <a href="/topics" class="btn btn-dark btn-md" role="button" aria-pressed="true">Journal</a></div>
+			<div class='d-flex'> <a href="/topics" class="btn btn-md" role="button" aria-pressed="true">Journal</a></div>
 			{% else %}
-			<p class="text-white">Get started by registering or login to continue your journey.</p>
-			<div class='d-flex flex-row justify-content-between'>
-				<a class="btn btn-dark btn-lg active mx-5" href="/register" role="button" aria-pressed="true">Register</a>
-				<a class="btn btn-dark btn-lg active mx-5" href="/login" role="button" aria-pressed="true">Login</a>
+			<p class="lead">Get started by registering or login to continue your journey.</p>
+			<div class='d-flex flex-row'>
+				<a class="btn active" href="/register" role="button" aria-pressed="true">Register</a>
+				<a class="btn active mx-5" href="/login" role="button" aria-pressed="true">Login</a>
 			{% endif %}
 			</div>
 			</div>
-		  </div>
+		</main>
 
 	</div>
 
