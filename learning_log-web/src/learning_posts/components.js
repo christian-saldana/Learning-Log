@@ -15,7 +15,6 @@ export function TopicsComponent(props) {
       tempNewTopics.unshift(newTopic)
       setNewTopics(tempNewTopics)
     }
-    console.log(props)
 
     return <div className='mx-5 w-50 mx-auto'>
       
