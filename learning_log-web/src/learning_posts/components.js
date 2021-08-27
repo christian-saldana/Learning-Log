@@ -17,7 +17,7 @@ export function TopicsComponent(props) {
     }
     console.log(props)
 
-    return <div className='mx-5'>
+    return <div className='mx-5 w-50 mx-auto'>
       
             {canTopic === true && <TopicCreate didTopic={handleNewTopic} />}
           <TopicsList newTopics={newTopics} {...props}/>
@@ -51,7 +51,7 @@ export function TopicDetailComponent(props) {
     tempNewEntries.unshift(newEntry)
     setNewEntries(tempNewEntries)
     }
-    return <div className='mx-5'>
+    return <div className='mx-5 w-50 mx-auto'>
               {topic === null ? null :<Topic topic={topic} /> }
               {canEntry === true && <EntryCreate  didEntry={handleNewEntry} className='col-12 mb-3 mt-5' />}
               <p className = 'fs-2'>Entries: </p> <br/>

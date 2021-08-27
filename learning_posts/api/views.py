@@ -34,7 +34,7 @@ def get_paginated_queryset_response(qs, request):
 @permission_classes([IsAuthenticated])
 @authentication_classes([SessionAuthentication])
 def topics(request,*args, **kwargs):
-    qs = Topic.objects.filter(user=request.user.id)
+    qs = Topic.objects.filter(user=request.user)
     # qs = Topic.objects.all()
     username = request.GET.get('username')
     if username != None:

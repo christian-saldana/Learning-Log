@@ -1,19 +1,19 @@
-<div id="grad1" style="position:absolute; height:721px; width:100vw; background-color: red; background-image: linear-gradient(180deg, #5E454B, #F7D59C); ">
-
 {% extends "base.html" %}
 
 {% block content %}
 
-<div class='col-10 col-md-4 mt-5 mx-auto'>
 
-<h1>{{ title }}</h1>
+<main class="container auth d-flex w-75">
+    <div class='col-10 col-md-4 mx-auto p-4 text-dark rounded bg-authentication'>
 
-{% if description %}
-<p>{{ description }}</p>
-{% endif %}
-{% include "components/form.html" with form=form btn_label=btn_label %}
+        <h1>{{ title }}</h1>
 
-</div>
+        {% if description %}
+        <p>{{ description }}</p>
+        {% endif %}
+        {% include "components/form.html" with form=form btn_label=btn_label %}
 
-{% endblock content %}
-</div>
+    </div>
+
+        {% endblock content %}
+</main>

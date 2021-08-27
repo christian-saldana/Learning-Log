@@ -14,13 +14,13 @@ export function Topic(props) {
       window.location.href = `/${topic.id}`
     }
 
-    return <div className = 'card border-3 border-dark mt-5'>
+    return <div className = 'card border-1 border-end-0 border-start-0 my-5'>
       <div className = 'card-body'>
         <p className={className}>{topic.post_topic}</p>  
         {isDetail === true ? null : <p className='fs-4'> {topic.post_entry.length === 0 ? null : <> Most Recent Entry: </>} </p>}
         {isDetail === true ? null : <p className='fs-4'> {topic.post_entry.length !== 0 ? null : <> Start Adding Entries: </>} </p>}
         {isDetail === true ? null : <div> <p > {topic.post_entry[0]} </p></div>} 
-        {isDetail === true ? null : <button className='btn btn-dark' onClick={handleLink}> 
+        {isDetail === true ? null : <button className='btn btn-primary' onClick={handleLink}> 
         {topic.post_entry.length === 0 ? null : <> Read Entries </>} 
         {topic.post_entry.length !== 0 ? null : <> Add Entries </>}</button>}    
       </div>  
@@ -67,18 +67,18 @@ export function EntriesList(props) {
     return <div>
           {entries.map(e => (
         <div key={e.id}>
-          <h4 className='card-header border border-dark'> {e.date_added} 
+          <h4 className='card-header border'> {e.date_added} 
               <button variant="contained" style={{float: 'right'}} className='btn btn-sm btn-link' onClick={() => handleLink(e.id)}>Edit Entry</button>
           </h4> 
-            <p className='card-body border border-dark pb-5'> {e.post_entry} </p></div> 
+            <p className='card-body border pb-5'> {e.post_entry} </p></div> 
         ))}
 
         {props.post_entry.map(e  => (
         <div key={e.id}> 
-          <h4 className='card-header border border-dark'> {e.date_added} 
+          <h4 className='card-header border '> {e.date_added} 
               <button variant="contained" style={{float: 'right'}} className='btn btn-sm btn-link' onClick={() => handleLink(e.id)}>Edit Entry</button>
           </h4> 
-            <p className='card-body border border-dark pb-5' > {e.post_entry} </p> 
+            <p className='card-body border border-start-0 border-end-0 pb-5' > {e.post_entry} </p> 
         </div> 
         ))}
 

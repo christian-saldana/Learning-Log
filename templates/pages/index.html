@@ -2,35 +2,18 @@
 
 {% block content %}
 
-		<!-- <div
-		class="bg-image"
-		style="
-		position: absolute;
-		height:100vh;
-		width:100vw;
-		  background-image: url('/static/media/blog_bg.jpg');
-		  background-size: cover;
-		"
-	  > -->
-
 	  <div class="container home-image"></div>
 
 
 		<div class="mask jumbotron">
 			<div class='d-flex flex-column justify-content-center h-100'>
-			<h1 class="welcome-header display-1 font-weight-bold">Welcome to <br> Learning Log!</h1>
-			<p class="lead">Working on a new skill or just want to record your thoughts?<br>Learning Log allows you to create time-stamped entries so that <br> you can review your progress.</p>
-			<hr class="line my-3" />
+			<h1 class="welcome-header display-1 font-weight-bold">Welcome to <br> Logger!</h1>
+			<p class="lead">Record your progress on a new skill.
 			{% if request.user.is_authenticated %}
-			<div class='d-flex flex-row justify-content-between'>
-				<p class="lead">Continue to your learning journey.</p> 
-			</div>
-			<div class='d-flex'> <a href="/topics" class="btn btn-md" role="button" aria-pressed="true">Journal</a></div>
+			<div class='d-flex mx-auto mt-5'> <a href="/topics" class="btn btn-primary btn-md" role="button" aria-pressed="false">Continue Logging</a></div>
 			{% else %}
-			<p class="lead">Get started by registering or login to continue your journey.</p>
-			<div class='d-flex flex-row'>
-				<a class="btn active" href="/register" role="button" aria-pressed="true">Register</a>
-				<a class="btn active mx-5" href="/login" role="button" aria-pressed="true">Login</a>
+			<div class='d-flex mx-auto'>
+				<a class="btn btn-primary" href="/register" role="button">Become a Logger</a>
 			{% endif %}
 			</div>
 			</div>

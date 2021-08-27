@@ -9,7 +9,7 @@ def login_view(request, *args, **kwargs):
     if form.is_valid():
         user_ = form.get_user()
         login(request, user_)
-        return redirect("/")
+        return redirect("/topics")
     context = {
         "form": form,
         "btn_label": "Login",
@@ -36,7 +36,7 @@ def register_view(request, *args, **kwargs):
         user = form.save(commit=True)
         user.set_password(form.cleaned_data.get("password1"))
         login(request, user)
-        return redirect("/")
+        return redirect("/login")
     context = {
         "form": form,
         "btn_label": "Register",

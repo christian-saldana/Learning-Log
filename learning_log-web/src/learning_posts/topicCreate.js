@@ -3,7 +3,9 @@ import React from 'react'
 import {apiTopicCreate, apiEntryCreate} from './lookup'
 
 
+
 export function TopicCreate(props){
+  console.log(props)
     const textAreaRef = React.createRef()
     const {didTopic} = props
       const handleBackendUpdate = (response, status) => {
@@ -20,12 +22,12 @@ export function TopicCreate(props){
           apiTopicCreate(newVal, handleBackendUpdate)
           textAreaRef.current.value=''
       }
-      return <div className={props.className}>
+      return <div>
           <form onSubmit={handleSubmit}>
             <textarea ref={textAreaRef} required={true} className='form-control form-control-sm' name='topic'>
   
             </textarea>
-            <button type='submit' className='btn btn-outline-dark my-3'>New Topic</button>
+            <button type='submit' className='btn btn-outline-primary my-3'>New Topic</button>
           </form>
     </div>
     }
@@ -50,12 +52,13 @@ export function TopicCreate(props){
             apiEntryCreate(urlTopicId, newVal, handleBackendUpdate)
             textAreaRef.current.value=''
         }
+        console.log(props)
         return <div className={props.className}>
             <form onSubmit={handleSubmit}>
               <textarea ref={textAreaRef} required={true} className='form-control form-control-sm' name='entry'>
     
               </textarea>
-              <button type='submit' className='btn btn-outline-dark my-3'>New Entry</button>
+              <button type='submit' className='btn btn-outline-primary my-3'>New Entry</button>
             </form>
       </div>
       }
