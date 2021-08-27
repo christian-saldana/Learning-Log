@@ -1,0 +1,32 @@
+.container {
+    max-width: none;
+    padding:0;
+}
+
+.home-image {
+    background: url("/static/media/blog_bg.jpg");
+    background-size: 100% 100%;
+    position:absolute;
+    z-index:-1;
+    height:721px;
+    width:100vw;
+}
+
+.mask {
+    background-color: rgba(0, 0, 0, 0.1);
+    text-align: center;
+    height:721px;
+    width:100vw;
+    padding: 200px 5% 200px 5%;
+}
+
+.welcome-header.display-1 {
+    color:white;
+    font-weight:600;
+}
+
+.mask .lead {
+    text-align:center;
+    font-weight: 600;
+    color: white;
+}
