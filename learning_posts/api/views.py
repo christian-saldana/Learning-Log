@@ -33,9 +33,8 @@ def get_paginated_queryset_response(qs, request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 @authentication_classes([SessionAuthentication])
-def topics(request,*args, **kwargs):
-    qs = Topic.objects.filter(user=request.user)
-    # qs = Topic.objects.all()
+def topics(request, *args, **kwargs):
+    qs = Topic.objects.filter(user=request.user.id)
     username = request.GET.get('username')
     if username != None:
         qs = qs.filter(user__username__iexact=username)
@@ -47,6 +46,9 @@ def topics(request,*args, **kwargs):
 @permission_classes([IsAuthenticated])
 @authentication_classes([SessionAuthentication])
 def topic(request, topic_id, *args, **kwargs):
+    topic = Topic.objects.get(id=topic_id)
+    if topic.user.id != request.user.id:
+        raise Http404
     qs = Topic.objects.filter(id=topic_id)
     if not qs.exists():
         return Response({}, status=404)
