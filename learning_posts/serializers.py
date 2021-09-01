@@ -32,7 +32,7 @@ class EntrySerializer(serializers.ModelSerializer):
         return obj.post_topic
 
 class TopicCreateSerializer(serializers.ModelSerializer):
-    user = PublicProfileSerializer(source='user.profile', read_only=True)#serializers.SerializerMethodField(read_only=True)
+    user = PublicProfileSerializer(source='user.profile', read_only=True)
     post_entry = serializers.SlugRelatedField(
         many=True,
         read_only=True,
@@ -47,9 +47,6 @@ class TopicCreateSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError("This title is too long")
             return value
         
-    # def get_user(self, obj):
-    #     return obj.user.id
-
 class TopicSerializer(serializers.ModelSerializer):
     user = PublicProfileSerializer(source= 'user.profile', read_only=True)
     post_topic = serializers.SerializerMethodField(read_only=True)

@@ -39,10 +39,6 @@ class Entry(models.Model):
     
     class Meta:
         ordering = ['-id']
-
-    
-    # def post(self):
-    #     return self.date_added in {self.post_entry}  
     
 
 

@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-
 import {TopicsList} from './topics'
 import {TopicCreate, EntryCreate} from './topicCreate'
 import {Topic, EntriesList} from './detail'
@@ -10,6 +9,7 @@ import {apiDetailList} from './lookup'
 export function TopicsComponent(props) {
     const [newTopics, setNewTopics] = useState([])
     const canTopic = props.canTopic === "false" ? false : true
+    
     const handleNewTopic = (newTopic) => {
       let tempNewTopics = [...newTopics]
       tempNewTopics.unshift(newTopic)
@@ -17,10 +17,9 @@ export function TopicsComponent(props) {
     }
 
     return <div className='mx-5 w-50 mx-auto'>
-      
             {canTopic === true && <TopicCreate didTopic={handleNewTopic} />}
-          <TopicsList newTopics={newTopics} {...props}/>
-    </div>
+            <TopicsList newTopics={newTopics} {...props}/>
+          </div>
 }
 
 export function TopicDetailComponent(props) {

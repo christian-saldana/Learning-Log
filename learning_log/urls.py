@@ -17,7 +17,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, re_path, include
-from django.views.generic import TemplateView
 
 from accounts.views import (
     login_view,
@@ -44,7 +43,6 @@ urlpatterns = [
     re_path(r'profiles?/', include('profiles.urls')),
     path('edit_entry/<int:entry_id>/', edit_entry, name='edit_entry'),
     path('api/topics/', include('learning_posts.api.urls'))
-
 ]
 
 if settings.DEBUG:

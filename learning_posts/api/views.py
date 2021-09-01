@@ -1,12 +1,11 @@
 from django.conf import settings
-from django.http import HttpResponse, Http404, JsonResponse
+from django.http import Http404
 from rest_framework import generics
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from ..forms import EntryForm
 from ..models import Topic, Entry
 from ..serializers import (
     TopicCreateSerializer, 
@@ -73,10 +72,8 @@ def delete_topic(request, topic_id, *args, **kwargs):
 @permission_classes([IsAuthenticated])
 def new_topic(request, *args, **kwargs):
     """Adds new topic to learning log"""
-    print(request.data)
     serializer = TopicCreateSerializer(data=request.data)
     if serializer.is_valid():
-        print(serializer)
         serializer.save(user=request.user)
         return Response(serializer.data, status=201)
     return Response({}, status=400)

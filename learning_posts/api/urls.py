@@ -7,7 +7,6 @@ from .views import (
     topics,
     topic,
     new_topic,
-    new_entry,
     delete_topic,
 )
 

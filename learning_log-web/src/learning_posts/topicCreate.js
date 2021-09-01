@@ -5,7 +5,6 @@ import {apiTopicCreate, apiEntryCreate} from './lookup'
 
 
 export function TopicCreate(props){
-  console.log(props)
     const textAreaRef = React.createRef()
     const {didTopic} = props
       const handleBackendUpdate = (response, status) => {
